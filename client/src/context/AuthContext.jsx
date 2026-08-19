@@ -22,8 +22,15 @@ export const AuthProvider = ({ children }) => {
     return data;
   };
 
-  const register = async (name, email, password, role) => {
-    const { data } = await api.post('/auth/register', { name, email, password, role });
+  const registerPatient = async (userData) => {
+    const { data } = await api.post('/auth/register', userData);
+    setUser(data);
+    localStorage.setItem('userInfo', JSON.stringify(data));
+    return data;
+  };
+
+  const registerHospital = async (hospitalData) => {
+    const { data } = await api.post('/auth/register-hospital', hospitalData);
     setUser(data);
     localStorage.setItem('userInfo', JSON.stringify(data));
     return data;
@@ -34,8 +41,22 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem('userInfo');
   };
 
+  const updateUser = (updatedData) => {
+    const newUser = { ...user, ...updatedData };
+    setUser(newUser);
+    localStorage.setItem('userInfo', JSON.stringify(newUser));
+  };
+
   return (
-    <AuthContext.Provider value={{ user, loading, login, register, logout }}>
+    <AuthContext.Provider value={{
+      user,
+      loading,
+      login,
+      registerPatient,
+      registerHospital,
+      logout,
+      updateUser,
+    }}>
       {children}
     </AuthContext.Provider>
   );

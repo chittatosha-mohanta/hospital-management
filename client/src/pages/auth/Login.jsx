@@ -17,10 +17,24 @@ const Login = () => {
     setLoading(true);
     try {
       const user = await login(email, password);
-      toast.success(`Welcome back, ${user.name}!`);
-      
+      // Handle pending booking if any
+      const pendingBookingStr = sessionStorage.getItem('pendingBooking');
+      if (user.role === 'patient' && pendingBookingStr) {
+        try {
+          const pendingBooking = JSON.parse(pendingBookingStr);
+          await api.post('/appointments', pendingBooking);
+          sessionStorage.removeItem('pendingBooking');
+          toast.success('🎉 Appointment confirmed and booked!');
+          navigate('/patient/appointments');
+          return;
+        } catch (bookingErr) {
+          console.error(bookingErr);
+        }
+      }
+
       // Redirect based on role
-      if (user.role === 'admin') navigate('/admin');
+      if (user.role === 'superAdmin') navigate('/super-admin');
+      else if (user.role === 'hospitalAdmin') navigate('/hospital-admin');
       else if (user.role === 'doctor') navigate('/doctor');
       else navigate('/patient');
     } catch (error) {
