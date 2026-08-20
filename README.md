@@ -79,7 +79,12 @@ hospital-management/
 
 3. Set up environment variables:
    - Create a `.env` file in the `server` directory using `server/.env.example` as a template.
-   - Create a `.env` file in the `client` directory using `client/.env.example` as a template.
+   - Create a `.env` file in the `client` directory and configure the API url along with your Supabase project credentials:
+     ```env
+     VITE_API_URL=http://localhost:5001/api
+     VITE_SUPABASE_URL=your_supabase_project_url
+     VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
+     ```
 
 4. Seed the database with mock clinics, users, doctors, and reviews:
    ```bash
