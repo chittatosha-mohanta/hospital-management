@@ -104,3 +104,42 @@ The client will be running at `http://localhost:5173` and the backend server at 
 
 The repository is configured for easy deployment on Vercel using the root-level [`vercel.json`](./vercel.json) settings.
 Simply link the repository to your Vercel project and it will build and deploy the Vite frontend automatically.
+
+---
+
+## 🔑 Demo Credentials
+
+After running `npm run seed`, the following credentials can be used for testing and demoing portals:
+
+### 👑 Platform Super Admin
+- **Email**: `admin@healthcarepro.com`
+- **Password**: `admin123`
+
+### 🏢 Hospital Admins
+- **Password (for all admins)**: `hospital123`
+- **Portals**:
+  1. Apollo Multi-Specialty Hospital (Chennai): `rajesh@apollo.com`
+  2. Fortis Memorial Research Institute (Gurugram): `priya@fortis.com`
+  3. Max Super Speciality Hospital (Delhi): `sanjay@max.com`
+  4. Manipal Hospital (Bengaluru): `deepak@manipal.com`
+  5. Kokilaben Dhirubhai Ambani Hospital (Mumbai): `anil@kokilaben.com`
+
+### 🩺 Doctors
+- **Password (for all doctors)**: `doctor123`
+- **Portals**:
+  1. Dr. Ananya Verma (Apollo Cardiology): `ananya@apollo.com`
+  2. Dr. Arjun Reddy (Apollo Pediatrics): `arjun@apollo.com`
+  3. Dr. Rahul Joshi (Fortis Cardiology): `rahul@fortis.com`
+  4. Dr. Sonia Gupta (Fortis Pediatrics): `sonia@fortis.com`
+  5. Dr. Sanjay Dutt (Max Cardiology): `sanjaydutt@max.com`
+  6. Dr. Karan Johar (Max Pediatrics): `karan@max.com`
+  7. Dr. Deepak Chopra (Manipal Cardiology): `chopra@manipal.com`
+  8. Dr. Divya Spandana (Manipal Pediatrics): `divya@manipal.com`
+  9. Dr. Anil Kapoor (Kokilaben Cardiology): `anilkapoor@kokilaben.com`
+  10. Dr. Madhuri Dixit (Kokilaben Pediatrics): `madhuri@kokilaben.com`
+
+### 👤 Patients (20 Accounts)
+- **Password (for all patients)**: `patient123`
+- **Portals**:
+  - `patient1@gmail.com` to `patient20@gmail.com` (e.g. `patient1@gmail.com`, `patient2@gmail.com`, etc.)
+
