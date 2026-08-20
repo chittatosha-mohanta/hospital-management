@@ -12,6 +12,9 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
 
   const login = async (email, password) => {
+    if (!supabase) {
+      throw new Error('Supabase is not configured. Please define VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY in your Vercel/environment variables.');
+    }
     // 1. Log in via Supabase
     const { error: sbError } = await supabase.auth.signInWithPassword({
       email,
@@ -27,6 +30,9 @@ export const AuthProvider = ({ children }) => {
   };
 
   const registerPatient = async (userData) => {
+    if (!supabase) {
+      throw new Error('Supabase is not configured. Please define VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY in your Vercel/environment variables.');
+    }
     // 1. Register user via Supabase
     const { error: sbError } = await supabase.auth.signUp({
       email: userData.email,
@@ -42,6 +48,9 @@ export const AuthProvider = ({ children }) => {
   };
 
   const registerHospital = async (hospitalData) => {
+    if (!supabase) {
+      throw new Error('Supabase is not configured. Please define VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY in your Vercel/environment variables.');
+    }
     // 1. Register hospital admin via Supabase
     const { error: sbError } = await supabase.auth.signUp({
       email: hospitalData.adminEmail,
@@ -57,7 +66,9 @@ export const AuthProvider = ({ children }) => {
   };
 
   const logout = async () => {
-    await supabase.auth.signOut();
+    if (supabase) {
+      await supabase.auth.signOut();
+    }
     setUser(null);
     localStorage.removeItem('userInfo');
   };
