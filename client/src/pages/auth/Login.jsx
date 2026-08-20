@@ -39,7 +39,7 @@ const Login = () => {
       else if (user.role === 'doctor') navigate('/doctor');
       else navigate('/patient');
     } catch (error) {
-      toast.error(error.response?.data?.message || 'Login failed');
+      toast.error(error.response?.data?.message || error.message || 'Login failed');
     } finally {
       setLoading(false);
     }
