@@ -42,10 +42,6 @@ const HospitalDetail = () => {
   // Booking Modal State
   const [selectedDoctor, setSelectedDoctor] = useState(null);
 
-  useEffect(() => {
-    fetchHospitalData();
-  }, [slug]);
-
   const fetchHospitalData = async () => {
     setLoading(true);
     try {
@@ -69,6 +65,10 @@ const HospitalDetail = () => {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    fetchHospitalData();
+  }, [slug]);
 
   const [availableSlots, setAvailableSlots] = useState([]);
   const [dayShifts, setDayShifts] = useState([]);

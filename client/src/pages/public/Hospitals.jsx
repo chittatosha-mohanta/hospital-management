@@ -30,14 +30,6 @@ const Hospitals = () => {
   const [cities, setCities] = useState([]);
   const [pagination, setPagination] = useState({ page: 1, pages: 1, total: 0 });
 
-  useEffect(() => {
-    fetchCities();
-  }, []);
-
-  useEffect(() => {
-    fetchHospitals();
-  }, [search, city, specialty, pagination.page]);
-
   const fetchCities = async () => {
     try {
       const { data } = await api.get('/hospitals/cities');
@@ -67,6 +59,14 @@ const Hospitals = () => {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    fetchCities();
+  }, []);
+
+  useEffect(() => {
+    fetchHospitals();
+  }, [search, city, specialty, pagination.page]);
 
   const commonSpecialties = [
     'All Specialties',

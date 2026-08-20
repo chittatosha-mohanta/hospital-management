@@ -7,10 +7,6 @@ const PatientHistory = () => {
   const [prescriptions, setPrescriptions] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    fetchHistory();
-  }, []);
-
   const fetchHistory = async () => {
     setLoading(true);
     try {
@@ -22,6 +18,10 @@ const PatientHistory = () => {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    fetchHistory();
+  }, []);
 
   return (
     <DashboardLayout>

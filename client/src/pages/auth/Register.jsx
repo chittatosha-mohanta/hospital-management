@@ -4,6 +4,7 @@ import { AuthContext } from '../../context/AuthContext';
 import { Activity, Mail, Lock, User, ArrowRight, Loader2, Phone, Building2 } from 'lucide-react';
 import { toast } from 'react-toastify';
 import { motion } from 'framer-motion';
+import api from '../../services/api';
 
 const Register = () => {
   const [formData, setFormData] = useState({

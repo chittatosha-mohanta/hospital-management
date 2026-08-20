@@ -49,14 +49,6 @@ const DoctorsDirectory = () => {
     roomOrClinic: '',
   });
 
-  useEffect(() => {
-    fetchCities();
-  }, []);
-
-  useEffect(() => {
-    fetchDoctors();
-  }, [search, specialty, city, sort, pagination.page]);
-
   const fetchCities = async () => {
     try {
       const { data } = await api.get('/hospitals/cities');
@@ -87,6 +79,14 @@ const DoctorsDirectory = () => {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    fetchCities();
+  }, []);
+
+  useEffect(() => {
+    fetchDoctors();
+  }, [search, specialty, city, sort, pagination.page]);
 
   const handleDateChange = async (dateVal) => {
     setBookingData({ 

@@ -20,10 +20,6 @@ const ManageUsers = () => {
   const [roleFilter, setRoleFilter] = useState('');
   const [search, setSearch] = useState('');
 
-  useEffect(() => {
-    fetchUsers();
-  }, [roleFilter, search]);
-
   const fetchUsers = async () => {
     setLoading(true);
     try {
@@ -40,6 +36,10 @@ const ManageUsers = () => {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    fetchUsers();
+  }, [roleFilter, search]);
 
   const handleToggleStatus = async (userId) => {
     try {

@@ -13,10 +13,6 @@ const ManageDepartments = () => {
   const [showModal, setShowModal] = useState(false);
   const [formData, setFormData] = useState({ name: '', description: '' });
 
-  useEffect(() => {
-    fetchDepartments();
-  }, []);
-
   const fetchDepartments = async () => {
     setLoading(true);
     try {
@@ -31,6 +27,10 @@ const ManageDepartments = () => {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    fetchDepartments();
+  }, []);
 
   const handleCreateDepartment = async (e) => {
     e.preventDefault();

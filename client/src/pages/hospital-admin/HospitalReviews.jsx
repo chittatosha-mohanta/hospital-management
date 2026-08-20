@@ -12,10 +12,6 @@ const HospitalReviews = () => {
   const [respondingTo, setRespondingTo] = useState(null);
   const [responseText, setResponseText] = useState('');
 
-  useEffect(() => {
-    fetchReviews();
-  }, []);
-
   const fetchReviews = async () => {
     setLoading(true);
     try {
@@ -30,6 +26,10 @@ const HospitalReviews = () => {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    fetchReviews();
+  }, []);
 
   const handleSendResponse = async (reviewId) => {
     if (!responseText.trim()) return;

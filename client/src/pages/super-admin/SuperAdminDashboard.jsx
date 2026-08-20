@@ -32,10 +32,6 @@ const SuperAdminDashboard = () => {
   const [pendingHospitals, setPendingHospitals] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    fetchDashboardData();
-  }, []);
-
   const fetchDashboardData = async () => {
     setLoading(true);
     try {
@@ -53,6 +49,10 @@ const SuperAdminDashboard = () => {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    fetchDashboardData();
+  }, []);
 
   const handleApproveHospital = async (hospitalId) => {
     try {

@@ -55,10 +55,6 @@ const ManageHospitalDoctors = () => {
     schedule: defaultSchedule,
   });
 
-  useEffect(() => {
-    fetchDoctors();
-  }, []);
-
   const fetchDoctors = async () => {
     setLoading(true);
     try {
@@ -71,6 +67,10 @@ const ManageHospitalDoctors = () => {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    fetchDoctors();
+  }, []);
 
   const [activeModalTab, setActiveModalTab] = useState('weekly'); // 'weekly' | 'dates'
   const [tempDateOverrides, setTempDateOverrides] = useState([]);

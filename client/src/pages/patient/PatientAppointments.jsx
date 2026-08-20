@@ -27,10 +27,6 @@ const PatientAppointments = () => {
   const [reviewData, setReviewData] = useState({ rating: 5, title: '', comment: '' });
   const [submittingReview, setSubmittingReview] = useState(false);
 
-  useEffect(() => {
-    fetchAppointments();
-  }, []);
-
   const fetchAppointments = async () => {
     setLoading(true);
     try {
@@ -43,6 +39,10 @@ const PatientAppointments = () => {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    fetchAppointments();
+  }, []);
 
   const handleCancel = async (id) => {
     const reason = prompt('Please enter a cancellation reason (optional):') || 'Cancelled by patient';

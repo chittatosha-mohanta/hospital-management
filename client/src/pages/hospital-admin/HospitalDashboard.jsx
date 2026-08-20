@@ -24,10 +24,6 @@ const HospitalDashboard = () => {
   const [stats, setStats] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    fetchHospitalStats();
-  }, []);
-
   const fetchHospitalStats = async () => {
     setLoading(true);
     try {
@@ -39,6 +35,10 @@ const HospitalDashboard = () => {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    fetchHospitalStats();
+  }, []);
 
   if (loading) {
     return (

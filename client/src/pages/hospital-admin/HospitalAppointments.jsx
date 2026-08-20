@@ -18,10 +18,6 @@ const HospitalAppointments = () => {
   const [loading, setLoading] = useState(true);
   const [statusFilter, setStatusFilter] = useState('');
 
-  useEffect(() => {
-    fetchAppointments();
-  }, [statusFilter]);
-
   const fetchAppointments = async () => {
     setLoading(true);
     try {
@@ -37,6 +33,10 @@ const HospitalAppointments = () => {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    fetchAppointments();
+  }, [statusFilter]);
 
   const handleStatusUpdate = async (id, status) => {
     try {
