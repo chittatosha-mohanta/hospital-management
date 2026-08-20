@@ -1,149 +1,179 @@
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
-import bcrypt from 'bcryptjs';
 import connectDB from '../config/db.js';
 import User from '../models/User.js';
 import Hospital from '../models/Hospital.js';
 import DoctorProfile from '../models/DoctorProfile.js';
 import Department from '../models/Department.js';
+import Appointment from '../models/Appointment.js';
 
 dotenv.config();
 
 const seed = async () => {
   try {
     await connectDB();
-    console.log('🌱 Seeding database...\n');
+    console.log('🌱 Seeding database with custom demo datasets...\n');
 
     // Clear existing data
     await User.deleteMany({});
     await Hospital.deleteMany({});
     await DoctorProfile.deleteMany({});
     await Department.deleteMany({});
+    await Appointment.deleteMany({});
 
     // 1. Create Super Admin
-    const superAdmin = await User.create({
+    await User.create({
       name: 'Platform Admin',
       email: 'admin@healthcarepro.com',
       password: 'admin123',
       role: 'superAdmin',
       phone: '+91 9000000000',
     });
-    console.log('✅ Super Admin created: admin@healthcarepro.com / admin123');
+    console.log('✅ Super Admin created: admin@healthcarepro.com');
 
-    // 2. Create Hospital Admin + Hospital (Apollo)
-    const hospitalAdmin1 = await User.create({
-      name: 'Rajesh Kumar',
-      email: 'rajesh@apollo.com',
-      password: 'hospital123',
-      role: 'hospitalAdmin',
-      phone: '+91 9100000001',
-    });
+    // 2. Create 5 Hospital Admins
+    const adminData = [
+      { name: 'Rajesh Kumar', email: 'rajesh@apollo.com', phone: '+91 9100000001' },
+      { name: 'Priya Sharma', email: 'priya@fortis.com', phone: '+91 9100000002' },
+      { name: 'Sanjay Dutt', email: 'sanjay@max.com', phone: '+91 9100000003' },
+      { name: 'Deepak Chopra', email: 'deepak@manipal.com', phone: '+91 9100000004' },
+      { name: 'Anil Kapoor', email: 'anil@kokilaben.com', phone: '+91 9100000005' }
+    ];
 
-    const hospital1 = await Hospital.create({
-      name: 'Apollo Multi-Specialty Hospital',
-      email: 'info@apollo.com',
-      phone: '+91 44 2829 3333',
-      description: 'Apollo Hospitals is one of the largest healthcare groups in Asia with a robust presence across the healthcare ecosystem.',
-      address: {
-        street: '21 Greams Lane, Off Greams Road',
+    const admins = [];
+    for (const admin of adminData) {
+      const createdAdmin = await User.create({
+        name: admin.name,
+        email: admin.email,
+        password: 'hospital123',
+        role: 'hospitalAdmin',
+        phone: admin.phone
+      });
+      admins.push(createdAdmin);
+    }
+    console.log('✅ 5 Hospital Admins created (Password: hospital123)');
+
+    // 3. Create 5 Hospitals
+    const hospitalData = [
+      {
+        name: 'Apollo Multi-Specialty Hospital',
+        email: 'info@apollo.com',
+        phone: '+91 44 2829 3333',
         city: 'Chennai',
         state: 'Tamil Nadu',
         pincode: '600006',
-        country: 'India',
+        specialties: ['Cardiology', 'Pediatrics'],
+        registeredBy: admins[0]._id
       },
-      coordinates: { lat: 13.0604, lng: 80.2496 },
-      specialties: ['Cardiology', 'Neurology', 'Orthopedics', 'Oncology', 'Pediatrics', 'Dermatology'],
-      facilities: ['ICU', 'NICU', 'Emergency', 'Pharmacy', 'Lab', 'Radiology', 'Blood Bank', 'Cafeteria'],
-      emergencyServices: true,
-      ambulanceService: true,
-      bedCount: 500,
-      operatingHours: { open: '00:00', close: '23:59', is24x7: true },
-      status: 'approved',
-      isFeatured: true,
-      registeredBy: hospitalAdmin1._id,
-    });
-
-    hospitalAdmin1.hospital = hospital1._id;
-    await hospitalAdmin1.save();
-    console.log('✅ Hospital 1 created: Apollo Multi-Specialty Hospital (Chennai)');
-    console.log('   Admin: rajesh@apollo.com / hospital123');
-
-    // 3. Create Hospital Admin + Hospital (Fortis)
-    const hospitalAdmin2 = await User.create({
-      name: 'Priya Sharma',
-      email: 'priya@fortis.com',
-      password: 'hospital123',
-      role: 'hospitalAdmin',
-      phone: '+91 9100000002',
-    });
-
-    const hospital2 = await Hospital.create({
-      name: 'Fortis Memorial Research Institute',
-      email: 'info@fortis.com',
-      phone: '+91 124 4962 200',
-      description: 'Fortis Memorial Research Institute is a multi-super specialty, quaternary care hospital with leading clinical experts.',
-      address: {
-        street: 'Sector 44, Opposite HUDA City Centre',
+      {
+        name: 'Fortis Memorial Research Institute',
+        email: 'info@fortis.com',
+        phone: '+91 124 4962 200',
         city: 'Gurugram',
         state: 'Haryana',
         pincode: '122002',
-        country: 'India',
+        specialties: ['Cardiology', 'Pediatrics'],
+        registeredBy: admins[1]._id
       },
-      coordinates: { lat: 28.4595, lng: 77.0266 },
-      specialties: ['Cardiology', 'Neurosurgery', 'Liver Transplant', 'Oncology', 'Urology', 'ENT'],
-      facilities: ['ICU', 'Emergency', 'Pharmacy', 'Lab', 'Radiology', 'Physiotherapy'],
-      emergencyServices: true,
-      ambulanceService: true,
-      bedCount: 310,
-      operatingHours: { open: '00:00', close: '23:59', is24x7: true },
-      status: 'approved',
-      isFeatured: true,
-      registeredBy: hospitalAdmin2._id,
-    });
-
-    hospitalAdmin2.hospital = hospital2._id;
-    await hospitalAdmin2.save();
-    console.log('✅ Hospital 2 created: Fortis Memorial Research Institute (Gurugram)');
-    console.log('   Admin: priya@fortis.com / hospital123');
-
-    // 4. Create Hospital (Pending — for testing approval flow)
-    const hospitalAdmin3 = await User.create({
-      name: 'Amit Patel',
-      email: 'amit@medanta.com',
-      password: 'hospital123',
-      role: 'hospitalAdmin',
-      phone: '+91 9100000003',
-    });
-
-    const hospital3 = await Hospital.create({
-      name: 'Medanta - The Medicity',
-      email: 'info@medanta.org',
-      phone: '+91 124 4141 414',
-      description: 'Medanta is a leading healthcare provider with world-class infrastructure and technology.',
-      address: {
-        street: 'CH Baktawar Singh Road, Sector 38',
-        city: 'Gurugram',
-        state: 'Haryana',
-        pincode: '122001',
-        country: 'India',
+      {
+        name: 'Max Super Speciality Hospital',
+        email: 'info@max.com',
+        phone: '+91 11 2651 5050',
+        city: 'Delhi',
+        state: 'Delhi',
+        pincode: '110017',
+        specialties: ['Cardiology', 'Pediatrics'],
+        registeredBy: admins[2]._id
       },
-      specialties: ['Cardiology', 'Gastroenterology', 'Pulmonology'],
-      facilities: ['ICU', 'Emergency', 'Lab'],
-      emergencyServices: true,
-      status: 'pending',
-      registeredBy: hospitalAdmin3._id,
-    });
+      {
+        name: 'Manipal Hospital',
+        email: 'info@manipal.com',
+        phone: '+91 80 2502 4444',
+        city: 'Bengaluru',
+        state: 'Karnataka',
+        pincode: '560017',
+        specialties: ['Cardiology', 'Pediatrics'],
+        registeredBy: admins[3]._id
+      },
+      {
+        name: 'Kokilaben Dhirubhai Ambani Hospital',
+        email: 'info@kokilaben.com',
+        phone: '+91 22 3099 9999',
+        city: 'Mumbai',
+        state: 'Maharashtra',
+        pincode: '400053',
+        specialties: ['Cardiology', 'Pediatrics'],
+        registeredBy: admins[4]._id
+      }
+    ];
 
-    hospitalAdmin3.hospital = hospital3._id;
-    await hospitalAdmin3.save();
-    console.log('✅ Hospital 3 created: Medanta (Pending Approval)');
+    const hospitals = [];
+    for (const h of hospitalData) {
+      const createdHospital = await Hospital.create({
+        name: h.name,
+        email: h.email,
+        phone: h.phone,
+        description: `${h.name} is a leading healthcare group offering premium Multi-Specialty clinical care.`,
+        address: {
+          street: 'Main Hospital Boulevard',
+          city: h.city,
+          state: h.state,
+          pincode: h.pincode,
+          country: 'India',
+        },
+        specialties: h.specialties,
+        facilities: ['ICU', 'Emergency', 'Pharmacy', 'Lab', 'Radiology'],
+        emergencyServices: true,
+        ambulanceService: true,
+        bedCount: 250,
+        operatingHours: { open: '00:00', close: '23:59', is24x7: true },
+        status: 'approved',
+        isFeatured: true,
+        registeredBy: h.registeredBy
+      });
+      hospitals.push(createdHospital);
+    }
+    console.log('✅ 5 Hospitals created');
 
-    // 5. Create Doctors for Apollo
-    const doctors1Data = [
-      { name: 'Dr. Ananya Verma', email: 'ananya@apollo.com', specialization: 'Cardiology', qualification: 'MBBS, MD Cardiology, DM', experience: 15, fee: 1500 },
-      { name: 'Dr. Vikram Singh', email: 'vikram@apollo.com', specialization: 'Neurology', qualification: 'MBBS, MD Neurology', experience: 12, fee: 1200 },
-      { name: 'Dr. Meera Nair', email: 'meera@apollo.com', specialization: 'Orthopedics', qualification: 'MBBS, MS Ortho', experience: 10, fee: 1000 },
-      { name: 'Dr. Arjun Reddy', email: 'arjun@apollo.com', specialization: 'Pediatrics', qualification: 'MBBS, MD Pediatrics', experience: 8, fee: 800 },
+    // Link admins to hospitals
+    for (let i = 0; i < 5; i++) {
+      admins[i].hospital = hospitals[i]._id;
+      await admins[i].save();
+    }
+
+    // 4. Create Departments (Cardiology & Pediatrics for each hospital)
+    const departments = [];
+    for (const hosp of hospitals) {
+      const cardio = await Department.create({
+        hospital: hosp._id,
+        name: 'Cardiology',
+        description: 'Advanced Cardiology and Cardiovascular Care.'
+      });
+      const pedia = await Department.create({
+        hospital: hosp._id,
+        name: 'Pediatrics',
+        description: 'General and Intensive Pediatric clinical care.'
+      });
+      departments.push(cardio, pedia);
+    }
+    console.log('✅ 10 Departments created (Cardiology & Pediatrics for each hospital)');
+
+    // 5. Create 10 Doctors (1 for Cardiology, 1 for Pediatrics at each hospital)
+    const doctorData = [
+      { name: 'Dr. Ananya Verma', email: 'ananya@apollo.com', specialization: 'Cardiology', fee: 1200 },
+      { name: 'Dr. Arjun Reddy', email: 'arjun@apollo.com', specialization: 'Pediatrics', fee: 800 },
+      
+      { name: 'Dr. Rahul Joshi', email: 'rahul@fortis.com', specialization: 'Cardiology', fee: 1500 },
+      { name: 'Dr. Sonia Gupta', email: 'sonia@fortis.com', specialization: 'Pediatrics', fee: 900 },
+      
+      { name: 'Dr. Sanjay Dutt', email: 'sanjaydutt@max.com', specialization: 'Cardiology', fee: 1300 },
+      { name: 'Dr. Karan Johar', email: 'karan@max.com', specialization: 'Pediatrics', fee: 1000 },
+      
+      { name: 'Dr. Deepak Chopra', email: 'chopra@manipal.com', specialization: 'Cardiology', fee: 1400 },
+      { name: 'Dr. Divya Spandana', email: 'divya@manipal.com', specialization: 'Pediatrics', fee: 950 },
+      
+      { name: 'Dr. Anil Kapoor', email: 'anilkapoor@kokilaben.com', specialization: 'Cardiology', fee: 1600 },
+      { name: 'Dr. Madhuri Dixit', email: 'madhuri@kokilaben.com', specialization: 'Pediatrics', fee: 1100 }
     ];
 
     const defaultSchedule = [
@@ -156,107 +186,86 @@ const seed = async () => {
       { day: 'Sunday', startTime: '10:00', endTime: '13:00', slotDuration: 30, maxPatients: 6, isAvailable: false },
     ];
 
-    for (const doc of doctors1Data) {
+    const doctors = [];
+    for (let i = 0; i < doctorData.length; i++) {
+      const doc = doctorData[i];
+      const hosp = hospitals[Math.floor(i / 2)];
       const user = await User.create({
         name: doc.name,
         email: doc.email,
         password: 'doctor123',
         role: 'doctor',
-        hospital: hospital1._id,
-        phone: '+91 91000' + Math.floor(10000 + Math.random() * 90000),
+        hospital: hosp._id,
+        phone: '+91 95000' + Math.floor(10000 + Math.random() * 90000),
       });
 
       await DoctorProfile.create({
         user: user._id,
-        hospital: hospital1._id,
+        hospital: hosp._id,
         specialization: doc.specialization,
-        qualification: doc.qualification,
-        experience: doc.experience,
+        qualification: 'MBBS, MD',
+        experience: 8 + Math.floor(Math.random() * 12),
         consultationFee: doc.fee,
-        bio: `Experienced ${doc.specialization} specialist with ${doc.experience} years of practice.`,
-        languages: ['English', 'Hindi', 'Tamil'],
-        schedule: defaultSchedule,
-        isVerified: true,
-        isAcceptingAppointments: true,
-      });
-    }
-
-    hospital1.totalDoctors = doctors1Data.length;
-    await hospital1.save();
-    console.log(`✅ ${doctors1Data.length} doctors added to Apollo Hospital`);
-
-    // 6. Create Doctors for Fortis
-    const doctors2Data = [
-      { name: 'Dr. Sonia Gupta', email: 'sonia@fortis.com', specialization: 'Oncology', qualification: 'MBBS, MD Oncology', experience: 18, fee: 2000 },
-      { name: 'Dr. Rahul Joshi', email: 'rahul@fortis.com', specialization: 'Cardiology', qualification: 'MBBS, DM Cardiology', experience: 14, fee: 1800 },
-      { name: 'Dr. Kavita Menon', email: 'kavita@fortis.com', specialization: 'Dermatology', qualification: 'MBBS, MD Dermatology', experience: 9, fee: 900 },
-    ];
-
-    for (const doc of doctors2Data) {
-      const user = await User.create({
-        name: doc.name,
-        email: doc.email,
-        password: 'doctor123',
-        role: 'doctor',
-        hospital: hospital2._id,
-        phone: '+91 92000' + Math.floor(10000 + Math.random() * 90000),
-      });
-
-      await DoctorProfile.create({
-        user: user._id,
-        hospital: hospital2._id,
-        specialization: doc.specialization,
-        qualification: doc.qualification,
-        experience: doc.experience,
-        consultationFee: doc.fee,
-        bio: `Leading ${doc.specialization} expert with ${doc.experience} years of experience.`,
+        bio: `Specialist in ${doc.specialization} at ${hosp.name}.`,
         languages: ['English', 'Hindi'],
         schedule: defaultSchedule,
         isVerified: true,
         isAcceptingAppointments: true,
       });
+
+      doctors.push(user);
+    }
+    console.log('✅ 10 Doctors created (Password: doctor123)');
+
+    // Set doctors counts on hospitals
+    for (const h of hospitals) {
+      h.totalDoctors = 2;
+      await h.save();
     }
 
-    hospital2.totalDoctors = doctors2Data.length;
-    await hospital2.save();
-    console.log(`✅ ${doctors2Data.length} doctors added to Fortis Hospital`);
-
-    // 7. Create Departments
-    const deptNames1 = ['Cardiology', 'Neurology', 'Orthopedics', 'Pediatrics', 'Oncology', 'Dermatology'];
-    for (const name of deptNames1) {
-      await Department.create({ hospital: hospital1._id, name, description: `${name} department at Apollo Hospital` });
+    // 6. Create 20 Patients
+    const patients = [];
+    for (let i = 1; i <= 20; i++) {
+      const p = await User.create({
+        name: `Patient User ${i}`,
+        email: `patient${i}@gmail.com`,
+        phone: `+91 98000000${i < 10 ? '0' + i : i}`,
+        gender: i % 2 === 0 ? 'female' : 'male',
+        bloodGroup: 'O+',
+        password: 'patient123',
+        role: 'patient'
+      });
+      patients.push(p);
     }
-    console.log('✅ Departments created for Apollo');
+    console.log('✅ 20 Patients created (Password: patient123)');
 
-    const deptNames2 = ['Cardiology', 'Oncology', 'Dermatology', 'Neurosurgery', 'Urology'];
-    for (const name of deptNames2) {
-      await Department.create({ hospital: hospital2._id, name, description: `${name} department at Fortis Hospital` });
+    // 7. Book 10 Appointments linking Patients 1-10 with Doctors 1-10
+    // Every doctor/department will have at least 1 booked patient appointment
+    const appointmentDate = new Date();
+    appointmentDate.setDate(appointmentDate.getDate() + 5); // 5 days from now
+
+    for (let i = 0; i < 10; i++) {
+      const doc = doctors[i];
+      const hosp = hospitals[Math.floor(i / 2)];
+      const pat = patients[i];
+
+      await Appointment.create({
+        patient: pat._id,
+        doctor: doc._id,
+        hospital: hosp._id,
+        hospitalName: hosp.name,
+        roomOrClinic: 'Main OPD clinic room ' + (i + 1),
+        date: appointmentDate,
+        timeSlot: '10:00 AM',
+        reason: 'Regular clinical checkup and consultation.',
+        status: 'confirmed',
+        consultationFee: doctorData[i].fee,
+        isPaid: true
+      });
     }
-    console.log('✅ Departments created for Fortis');
+    console.log('✅ 10 Appointments created (linking every department to at least one patient)');
 
-    // 8. Create Test Patients
-    const patients = [
-      { name: 'Rohit Sharma', email: 'rohit@gmail.com', phone: '+91 9800000001', gender: 'male', bloodGroup: 'O+' },
-      { name: 'Sneha Iyer', email: 'sneha@gmail.com', phone: '+91 9800000002', gender: 'female', bloodGroup: 'A+' },
-      { name: 'Karan Malhotra', email: 'karan@gmail.com', phone: '+91 9800000003', gender: 'male', bloodGroup: 'B+' },
-    ];
-
-    for (const p of patients) {
-      await User.create({ ...p, password: 'patient123', role: 'patient' });
-    }
-    console.log('✅ 3 test patients created');
-
-    // Summary
-    console.log('\n═══════════════════════════════════════════');
-    console.log('🎉 Seeding complete! Test credentials:');
-    console.log('═══════════════════════════════════════════');
-    console.log('Super Admin:    admin@healthcarepro.com / admin123');
-    console.log('Hospital Admin: rajesh@apollo.com / hospital123');
-    console.log('Hospital Admin: priya@fortis.com / hospital123');
-    console.log('Doctor:         ananya@apollo.com / doctor123');
-    console.log('Patient:        rohit@gmail.com / patient123');
-    console.log('═══════════════════════════════════════════\n');
-
+    console.log('\n🎉 Seeding complete! Database is ready.');
     process.exit(0);
   } catch (error) {
     console.error('❌ Seeding failed:', error);

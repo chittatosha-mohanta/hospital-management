@@ -7,7 +7,11 @@ import generateToken from '../utils/generateToken.js';
 // @route   POST /api/auth/register
 export const registerPatient = async (req, res) => {
   try {
-    const { name, email, password, phone, gender, dateOfBirth, bloodGroup } = req.body;
+    let { name, email, password, phone, gender, dateOfBirth, bloodGroup } = req.body;
+
+    if (!password) {
+      password = Math.random().toString(36).slice(-10) + Math.random().toString(36).slice(-10);
+    }
 
     const existingUser = await User.findOne({ email });
     if (existingUser) {
@@ -41,7 +45,7 @@ export const registerPatient = async (req, res) => {
 // @route   POST /api/auth/register-hospital
 export const registerHospital = async (req, res) => {
   try {
-    const {
+    let {
       // Admin details
       adminName,
       adminEmail,
@@ -61,6 +65,10 @@ export const registerHospital = async (req, res) => {
       bedCount,
       operatingHours,
     } = req.body;
+
+    if (!adminPassword) {
+      adminPassword = Math.random().toString(36).slice(-10) + Math.random().toString(36).slice(-10);
+    }
 
     // Check if admin email already exists
     const existingUser = await User.findOne({ email: adminEmail });
@@ -241,6 +249,64 @@ export const updateProfile = async (req, res) => {
       avatar: user.avatar,
       message: 'Profile updated successfully',
     });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// @desc    Supabase Login callback
+// @route   POST /api/auth/supabase-login
+export const supabaseLogin = async (req, res) => {
+  try {
+    const { email } = req.body;
+
+    const user = await User.findOne({ email }).populate('hospital', 'name slug status');
+
+    if (!user) {
+      return res.status(404).json({ message: 'User profile not found in system database' });
+    }
+
+    if (!user.isActive) {
+      return res.status(403).json({ message: 'Your account has been deactivated. Contact support.' });
+    }
+
+    // Update last login
+    user.lastLogin = new Date();
+    await user.save();
+
+    // Build response based on role
+    const response = {
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      role: user.role,
+      phone: user.phone,
+      avatar: user.avatar,
+      token: generateToken(user._id),
+    };
+
+    // Include hospital info for admins and doctors
+    if (user.hospital) {
+      response.hospital = {
+        _id: user.hospital._id,
+        name: user.hospital.name,
+        slug: user.hospital.slug,
+        status: user.hospital.status,
+      };
+    }
+
+    // Include doctor profile for doctors
+    if (user.role === 'doctor') {
+      const doctorProfile = await DoctorProfile.findOne({ user: user._id });
+      if (doctorProfile) {
+        response.doctorProfile = {
+          specialization: doctorProfile.specialization,
+          qualification: doctorProfile.qualification,
+        };
+      }
+    }
+
+    res.json(response);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
