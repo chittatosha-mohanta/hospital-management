@@ -25,10 +25,6 @@ const ManageHospitals = () => {
   const [statusFilter, setStatusFilter] = useState('');
   const [search, setSearch] = useState('');
 
-  useEffect(() => {
-    fetchHospitals();
-  }, [statusFilter, search]);
-
   const fetchHospitals = async () => {
     setLoading(true);
     try {
@@ -45,6 +41,10 @@ const ManageHospitals = () => {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    fetchHospitals();
+  }, [statusFilter, search]);
 
   const handleStatusChange = async (hospitalId, status) => {
     let rejectionReason = '';

@@ -34,10 +34,6 @@ const HospitalSettings = () => {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
 
-  useEffect(() => {
-    fetchHospital();
-  }, []);
-
   const fetchHospital = async () => {
     setLoading(true);
     try {
@@ -65,6 +61,10 @@ const HospitalSettings = () => {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    fetchHospital();
+  }, []);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;

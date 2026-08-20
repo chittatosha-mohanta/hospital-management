@@ -4,6 +4,7 @@ import { AuthContext } from '../../context/AuthContext';
 import { Activity, Mail, Lock, ArrowRight, Loader2 } from 'lucide-react';
 import { toast } from 'react-toastify';
 import { motion } from 'framer-motion';
+import api from '../../services/api';
 
 const Login = () => {
   const [email, setEmail] = useState('');

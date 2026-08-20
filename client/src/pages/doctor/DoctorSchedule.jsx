@@ -45,10 +45,6 @@ const DoctorSchedule = () => {
 
   const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
-  useEffect(() => {
-    fetchInitialData();
-  }, []);
-
   const fetchInitialData = async () => {
     setLoading(true);
     try {
@@ -133,6 +129,10 @@ const DoctorSchedule = () => {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    fetchInitialData();
+  }, []);
 
   // Weekly Schedule handlers
   const handleToggleDay = (dayIndex) => {

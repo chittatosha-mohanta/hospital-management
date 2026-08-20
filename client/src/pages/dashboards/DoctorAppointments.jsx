@@ -32,10 +32,6 @@ const DoctorAppointments = () => {
     medicines: [{ name: '', dosage: '', duration: '', instructions: '' }]
   });
 
-  useEffect(() => {
-    fetchAppointments();
-  }, [statusFilter]);
-
   const fetchAppointments = async () => {
     setLoading(true);
     try {
@@ -50,6 +46,10 @@ const DoctorAppointments = () => {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    fetchAppointments();
+  }, [statusFilter]);
 
   const handleStatusUpdate = async (id, status) => {
     try {

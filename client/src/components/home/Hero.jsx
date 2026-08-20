@@ -2,6 +2,15 @@ import { motion } from 'framer-motion';
 import { ArrowRight, Search, Phone, Clock, Heart, Shield, Stethoscope } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
+const RANDOM_ICONS = [
+  { x: [12, -12, 12], y: [18, -18, 18], top: '15%', left: '10%', duration: 10 },
+  { x: [-15, 15, -15], y: [8, -8, 8], top: '45%', left: '85%', duration: 12 },
+  { x: [10, -10, 10], y: [-15, 15, -15], top: '75%', left: '20%', duration: 14 },
+  { x: [-8, 8, -8], y: [12, -12, 12], top: '30%', left: '70%', duration: 16 },
+  { x: [14, -14, 14], y: [-10, 10, -10], top: '60%', left: '40%', duration: 18 },
+  { x: [-12, 12, -12], y: [14, -14, 14], top: '85%', left: '60%', duration: 20 }
+];
+
 const Hero = () => {
   return (
     <section className="relative min-h-screen pt-32 pb-20 overflow-hidden flex items-center">
@@ -109,19 +118,19 @@ const Hero = () => {
 
           {/* Floating Medical Icons Background */}
           <div className="absolute top-0 right-0 w-full h-full -z-10 overflow-hidden pointer-events-none">
-            {[...Array(6)].map((_, i) => (
+            {RANDOM_ICONS.map((icon, i) => (
               <motion.div
                 key={i}
                 animate={{ 
-                  y: [Math.random() * 20, Math.random() * -20, Math.random() * 20],
-                  x: [Math.random() * 20, Math.random() * -20, Math.random() * 20],
+                  y: icon.y,
+                  x: icon.x,
                   rotate: [0, 360]
                 }}
-                transition={{ repeat: Infinity, duration: 10 + i * 2, ease: "linear" }}
+                transition={{ repeat: Infinity, duration: icon.duration, ease: "linear" }}
                 className="absolute text-primary-200/40 dark:text-primary-800/20"
                 style={{ 
-                  top: `${Math.random() * 100}%`, 
-                  left: `${Math.random() * 100}%`,
+                  top: icon.top, 
+                  left: icon.left,
                 }}
               >
                 <Stethoscope className="w-12 h-12" />

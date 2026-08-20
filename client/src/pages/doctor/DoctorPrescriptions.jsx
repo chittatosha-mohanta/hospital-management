@@ -7,10 +7,6 @@ const DoctorPrescriptions = () => {
   const [prescriptions, setPrescriptions] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    fetchPrescriptions();
-  }, []);
-
   const fetchPrescriptions = async () => {
     setLoading(true);
     try {
@@ -22,6 +18,10 @@ const DoctorPrescriptions = () => {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    fetchPrescriptions();
+  }, []);
 
   return (
     <DashboardLayout>

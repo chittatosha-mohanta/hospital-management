@@ -28,10 +28,6 @@ const PlatformAnalytics = () => {
   const [analytics, setAnalytics] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    fetchAnalytics();
-  }, []);
-
   const fetchAnalytics = async () => {
     setLoading(true);
     try {
@@ -43,6 +39,10 @@ const PlatformAnalytics = () => {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    fetchAnalytics();
+  }, []);
 
   const statusData = [
     { name: 'Completed', value: analytics?.appointmentsByStatus?.completed || 12, color: '#10b981' },

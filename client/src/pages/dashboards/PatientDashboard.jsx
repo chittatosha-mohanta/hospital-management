@@ -24,10 +24,6 @@ const PatientDashboard = () => {
   const [prescriptions, setPrescriptions] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    fetchPatientData();
-  }, []);
-
   const fetchPatientData = async () => {
     setLoading(true);
     try {
@@ -43,6 +39,10 @@ const PatientDashboard = () => {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    fetchPatientData();
+  }, []);
 
   const upcomingAppointments = appointments.filter(
     (a) => a.status === 'confirmed' || a.status === 'pending'

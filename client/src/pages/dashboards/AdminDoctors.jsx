@@ -16,10 +16,6 @@ const AdminDoctors = () => {
     department: 'Cardiology'
   });
 
-  useEffect(() => {
-    fetchDoctors();
-  }, []);
-
   const fetchDoctors = async () => {
     try {
       const { data } = await api.get('/admin/doctors');
@@ -28,6 +24,10 @@ const AdminDoctors = () => {
       toast.error('Failed to fetch doctors');
     }
   };
+
+  useEffect(() => {
+    fetchDoctors();
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

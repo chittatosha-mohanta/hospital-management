@@ -23,10 +23,6 @@ const DoctorDashboard = () => {
   const [loading, setLoading] = useState(true);
   const [doctorProfile, setDoctorProfile] = useState(null);
 
-  useEffect(() => {
-    fetchDashboardData();
-  }, []);
-
   const fetchDashboardData = async () => {
     setLoading(true);
     try {
@@ -42,6 +38,10 @@ const DoctorDashboard = () => {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    fetchDashboardData();
+  }, []);
 
   // Compute metrics
   const todayStr = new Date().toISOString().split('T')[0];
