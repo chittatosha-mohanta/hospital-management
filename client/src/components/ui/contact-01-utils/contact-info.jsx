@@ -40,8 +40,8 @@ export default function ContactInfo() {
         viewport={{ once: true }}
         className="text-4xl sm:text-5xl font-black text-slate-900 dark:text-white leading-tight mb-8"
       >
-        Get in Touch with Our <br />
-        <span className="text-primary-500">Medical Team</span>
+        Get in Touch with <br />
+        <span className="text-primary-500">Our Team</span>
       </motion.h2>
 
       <div className="space-y-6 mt-4">
