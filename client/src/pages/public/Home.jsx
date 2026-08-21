@@ -1,5 +1,6 @@
 import Navbar from '../../components/home/Navbar';
 import Hero from '../../components/home/Hero';
+import TrustedBy from '../../components/home/TrustedBy';
 import SearchSection from '../../components/home/SearchSection';
 import Departments from '../../components/home/Departments';
 import TopDoctors from '../../components/home/TopDoctors';
@@ -35,6 +36,7 @@ const Home = () => {
       
       <main>
         <Hero />
+        <TrustedBy />
         <SearchSection />
         <WhyChooseUs />
         <Departments />
