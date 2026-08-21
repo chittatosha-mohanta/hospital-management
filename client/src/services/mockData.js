@@ -148,6 +148,7 @@ export const DEMO_DOCTORS = [
   {
     _id: 'doc_ananya',
     user: { _id: 'user_ananya', name: 'Dr. Ananya Verma', email: 'ananya@apollo.com', phone: '+91 9500012345' },
+    avatar: '/images/doctors/doc_female_1.jpg',
     hospital: DEMO_HOSPITALS[0],
     specialization: 'Cardiology',
     qualification: 'MBBS, MD (Cardiology), DM, FACC',
@@ -164,6 +165,7 @@ export const DEMO_DOCTORS = [
   {
     _id: 'doc_arjun',
     user: { _id: 'user_arjun', name: 'Dr. Arjun Reddy', email: 'arjun@apollo.com', phone: '+91 9500012346' },
+    avatar: '/images/doctors/doc_male_1.jpg',
     hospital: DEMO_HOSPITALS[0],
     specialization: 'Pediatrics',
     qualification: 'MBBS, MD (Pediatrics), DNB',
@@ -180,6 +182,7 @@ export const DEMO_DOCTORS = [
   {
     _id: 'doc_siddharth',
     user: { _id: 'user_siddharth', name: 'Dr. Siddharth Mukherjee', email: 'siddharth@apollo.com', phone: '+91 9500012347' },
+    avatar: '/images/doctors/doc_male_2.jpg',
     hospital: DEMO_HOSPITALS[0],
     specialization: 'Neurology',
     qualification: 'MBBS, MS, MCh (Neurosurgery)',
@@ -196,6 +199,7 @@ export const DEMO_DOCTORS = [
   {
     _id: 'doc_meera',
     user: { _id: 'user_meera', name: 'Dr. Meera Nambiar', email: 'meera@apollo.com', phone: '+91 9500012348' },
+    avatar: '/images/doctors/doc_female_2.jpg',
     hospital: DEMO_HOSPITALS[0],
     specialization: 'Orthopedics',
     qualification: 'MBBS, MS (Orthopedics), Fellowship in Joint Replacement (UK)',
@@ -212,6 +216,7 @@ export const DEMO_DOCTORS = [
   {
     _id: 'doc_rajesh',
     user: { _id: 'user_rajesh', name: 'Dr. Rajesh Varma', email: 'rajeshvarma@apollo.com', phone: '+91 9500012349' },
+    avatar: '/images/doctors/doc_male_2.jpg',
     hospital: DEMO_HOSPITALS[0],
     specialization: 'General Medicine',
     qualification: 'MBBS, MD (Internal Medicine)',
@@ -228,6 +233,7 @@ export const DEMO_DOCTORS = [
   {
     _id: 'doc_swati',
     user: { _id: 'user_swati', name: 'Dr. Swati Deshmukh', email: 'swati@apollo.com', phone: '+91 9500012350' },
+    avatar: '/images/doctors/doc_female_1.jpg',
     hospital: DEMO_HOSPITALS[0],
     specialization: 'Dermatology',
     qualification: 'MBBS, MD (Dermatology & Venereology)',
@@ -246,6 +252,7 @@ export const DEMO_DOCTORS = [
   {
     _id: 'doc_rahul',
     user: { _id: 'user_rahul', name: 'Dr. Rahul Joshi', email: 'rahul@fortis.com', phone: '+91 9500022345' },
+    avatar: '/images/doctors/doc_male_1.jpg',
     hospital: DEMO_HOSPITALS[1],
     specialization: 'Cardiology',
     qualification: 'MBBS, MD, DM (Cardiology), FACC',
@@ -262,6 +269,7 @@ export const DEMO_DOCTORS = [
   {
     _id: 'doc_sonia',
     user: { _id: 'user_sonia', name: 'Dr. Sonia Gupta', email: 'sonia@fortis.com', phone: '+91 9500022346' },
+    avatar: '/images/doctors/doc_female_2.jpg',
     hospital: DEMO_HOSPITALS[1],
     specialization: 'Pediatrics',
     qualification: 'MBBS, DCH, DNB (Pediatrics)',
@@ -278,6 +286,7 @@ export const DEMO_DOCTORS = [
   {
     _id: 'doc_vikram',
     user: { _id: 'user_vikram', name: 'Dr. Vikramaditya Singh', email: 'vikram@fortis.com', phone: '+91 9500022347' },
+    avatar: '/images/doctors/doc_male_2.jpg',
     hospital: DEMO_HOSPITALS[1],
     specialization: 'Oncology',
     qualification: 'MBBS, MD, DM (Medical Oncology), ESMO Certified',
@@ -294,6 +303,7 @@ export const DEMO_DOCTORS = [
   {
     _id: 'doc_neha',
     user: { _id: 'user_neha', name: 'Dr. Neha Kapoor', email: 'neha@fortis.com', phone: '+91 9500022348' },
+    avatar: '/images/doctors/doc_female_1.jpg',
     hospital: DEMO_HOSPITALS[1],
     specialization: 'Gynecology',
     qualification: 'MBBS, MS (Obstetrics & Gynecology), Fellowship in Laparoscopy',
@@ -310,6 +320,7 @@ export const DEMO_DOCTORS = [
   {
     _id: 'doc_arvind',
     user: { _id: 'user_arvind', name: 'Dr. Arvind Kejriwal', email: 'arvind@fortis.com', phone: '+91 9500022349' },
+    avatar: '/images/doctors/doc_male_1.jpg',
     hospital: DEMO_HOSPITALS[1],
     specialization: 'Gastroenterology',
     qualification: 'MBBS, MD, DM (Gastroenterology)',
@@ -326,6 +337,7 @@ export const DEMO_DOCTORS = [
   {
     _id: 'doc_tanvi',
     user: { _id: 'user_tanvi', name: 'Dr. Tanvi Shah', email: 'tanvi@fortis.com', phone: '+91 9500022350' },
+    avatar: '/images/doctors/doc_female_2.jpg',
     hospital: DEMO_HOSPITALS[1],
     specialization: 'ENT',
     qualification: 'MBBS, MS (ENT - Otorhinolaryngology)',
@@ -344,6 +356,7 @@ export const DEMO_DOCTORS = [
   {
     _id: 'doc_sanjaydutt',
     user: { _id: 'user_sanjaydutt', name: 'Dr. Sanjay Dutt', email: 'sanjaydutt@max.com', phone: '+91 9500032345' },
+    avatar: '/images/doctors/doc_male_2.jpg',
     hospital: DEMO_HOSPITALS[2],
     specialization: 'Cardiology',
     qualification: 'MBBS, MS, MCh (CTVS), Chief Cardiac Surgeon',
@@ -360,6 +373,7 @@ export const DEMO_DOCTORS = [
   {
     _id: 'doc_karan',
     user: { _id: 'user_karan', name: 'Dr. Karan Johar', email: 'karan@max.com', phone: '+91 9500032346' },
+    avatar: '/images/doctors/doc_male_1.jpg',
     hospital: DEMO_HOSPITALS[2],
     specialization: 'Pediatrics',
     qualification: 'MBBS, MD (Pediatrics), Fellowship in Pediatric Critical Care',
@@ -376,6 +390,7 @@ export const DEMO_DOCTORS = [
   {
     _id: 'doc_alok',
     user: { _id: 'user_alok', name: 'Dr. Alok Nath', email: 'alok@max.com', phone: '+91 9500032347' },
+    avatar: '/images/doctors/doc_male_2.jpg',
     hospital: DEMO_HOSPITALS[2],
     specialization: 'Neurology',
     qualification: 'MBBS, MD, DM (Neurology)',
@@ -392,6 +407,7 @@ export const DEMO_DOCTORS = [
   {
     _id: 'doc_pooja',
     user: { _id: 'user_pooja', name: 'Dr. Pooja Hegde', email: 'pooja@max.com', phone: '+91 9500032348' },
+    avatar: '/images/doctors/doc_female_1.jpg',
     hospital: DEMO_HOSPITALS[2],
     specialization: 'Dermatology',
     qualification: 'MBBS, MD (Dermatology), Cosmetology Specialist',
@@ -408,6 +424,7 @@ export const DEMO_DOCTORS = [
   {
     _id: 'doc_rohit',
     user: { _id: 'user_rohit', name: 'Dr. Rohit Sharma', email: 'rohit@max.com', phone: '+91 9500032349' },
+    avatar: '/images/doctors/doc_male_1.jpg',
     hospital: DEMO_HOSPITALS[2],
     specialization: 'Orthopedics',
     qualification: 'MBBS, MS (Ortho), Fellowship in Sports Medicine',
@@ -424,6 +441,7 @@ export const DEMO_DOCTORS = [
   {
     _id: 'doc_sunita',
     user: { _id: 'user_sunita', name: 'Dr. Sunita Rao', email: 'sunita@max.com', phone: '+91 9500032350' },
+    avatar: '/images/doctors/doc_female_2.jpg',
     hospital: DEMO_HOSPITALS[2],
     specialization: 'Endocrinology',
     qualification: 'MBBS, MD, DM (Endocrinology)',
@@ -442,6 +460,7 @@ export const DEMO_DOCTORS = [
   {
     _id: 'doc_chopra',
     user: { _id: 'user_chopra', name: 'Dr. Deepak Chopra', email: 'chopra@manipal.com', phone: '+91 9500042345' },
+    avatar: '/images/doctors/doc_male_2.jpg',
     hospital: DEMO_HOSPITALS[3],
     specialization: 'Cardiology',
     qualification: 'MBBS, MD, DM (Cardiology), Preventive Cardiology Lead',
@@ -458,6 +477,7 @@ export const DEMO_DOCTORS = [
   {
     _id: 'doc_divya',
     user: { _id: 'user_divya', name: 'Dr. Divya Spandana', email: 'divya@manipal.com', phone: '+91 9500042346' },
+    avatar: '/images/doctors/doc_female_1.jpg',
     hospital: DEMO_HOSPITALS[3],
     specialization: 'Pediatrics',
     qualification: 'MBBS, MD (Pediatrics), Fellowship in Pediatric Pulmonology',
@@ -474,6 +494,7 @@ export const DEMO_DOCTORS = [
   {
     _id: 'doc_raghav',
     user: { _id: 'user_raghav', name: 'Dr. Raghavendra Rao', email: 'raghav@manipal.com', phone: '+91 9500042347' },
+    avatar: '/images/doctors/doc_male_1.jpg',
     hospital: DEMO_HOSPITALS[3],
     specialization: 'Nephrology',
     qualification: 'MBBS, MD, DM (Nephrology), Kidney Transplant Surgeon',
@@ -490,6 +511,7 @@ export const DEMO_DOCTORS = [
   {
     _id: 'doc_shalini',
     user: { _id: 'user_shalini', name: 'Dr. Shalini Sundaram', email: 'shalini@manipal.com', phone: '+91 9500042348' },
+    avatar: '/images/doctors/doc_female_2.jpg',
     hospital: DEMO_HOSPITALS[3],
     specialization: 'Gynecology',
     qualification: 'MBBS, DGO, DNB, Fellowship in Reproductive Medicine',
@@ -506,6 +528,7 @@ export const DEMO_DOCTORS = [
   {
     _id: 'doc_chetan',
     user: { _id: 'user_chetan', name: 'Dr. Chetan Bhagat', email: 'chetan@manipal.com', phone: '+91 9500042349' },
+    avatar: '/images/doctors/doc_male_2.jpg',
     hospital: DEMO_HOSPITALS[3],
     specialization: 'Psychiatry',
     qualification: 'MBBS, MD (Psychiatry), Behavioral Medicine Consultant',
@@ -522,6 +545,7 @@ export const DEMO_DOCTORS = [
   {
     _id: 'doc_ananyapanday',
     user: { _id: 'user_ananyapanday', name: 'Dr. Ananya Panday', email: 'ananyapanday@manipal.com', phone: '+91 9500042350' },
+    avatar: '/images/doctors/doc_female_1.jpg',
     hospital: DEMO_HOSPITALS[3],
     specialization: 'General Surgery',
     qualification: 'MBBS, MS (General Surgery), FIAGES (Laparoscopic Surgery)',
@@ -540,6 +564,7 @@ export const DEMO_DOCTORS = [
   {
     _id: 'doc_anilkapoor',
     user: { _id: 'user_anilkapoor', name: 'Dr. Anil Kapoor', email: 'anilkapoor@kokilaben.com', phone: '+91 9500052345' },
+    avatar: '/images/doctors/doc_male_2.jpg',
     hospital: DEMO_HOSPITALS[4],
     specialization: 'Cardiology',
     qualification: 'MBBS, MD, DM (Cardiology), FSCAI (USA)',
@@ -556,6 +581,7 @@ export const DEMO_DOCTORS = [
   {
     _id: 'doc_madhuri',
     user: { _id: 'user_madhuri', name: 'Dr. Madhuri Dixit', email: 'madhuri@kokilaben.com', phone: '+91 9500052346' },
+    avatar: '/images/doctors/doc_female_1.jpg',
     hospital: DEMO_HOSPITALS[4],
     specialization: 'Pediatrics',
     qualification: 'MBBS, MD (Pediatrics), Developmental Pediatrics Specialist',
@@ -572,6 +598,7 @@ export const DEMO_DOCTORS = [
   {
     _id: 'doc_shahrukh',
     user: { _id: 'user_shahrukh', name: 'Dr. Shah Rukh Khan', email: 'shahrukh@kokilaben.com', phone: '+91 9500052347' },
+    avatar: '/images/doctors/doc_male_2.jpg',
     hospital: DEMO_HOSPITALS[4],
     specialization: 'Neurology',
     qualification: 'MBBS, MS, MCh (Neurosurgery), Spine Specialist',
@@ -588,6 +615,7 @@ export const DEMO_DOCTORS = [
   {
     _id: 'doc_kareena',
     user: { _id: 'user_kareena', name: 'Dr. Kareena Kapoor', email: 'kareena@kokilaben.com', phone: '+91 9500052348' },
+    avatar: '/images/doctors/doc_female_2.jpg',
     hospital: DEMO_HOSPITALS[4],
     specialization: 'Dermatology',
     qualification: 'MBBS, DVD, MD (Dermatology), Aesthetic Medicine Fellow',
@@ -604,6 +632,7 @@ export const DEMO_DOCTORS = [
   {
     _id: 'doc_ranveer',
     user: { _id: 'user_ranveer', name: 'Dr. Ranveer Singh', email: 'ranveer@kokilaben.com', phone: '+91 9500052349' },
+    avatar: '/images/doctors/doc_male_1.jpg',
     hospital: DEMO_HOSPITALS[4],
     specialization: 'Orthopedics',
     qualification: 'MBBS, MS (Orthopedics), AO Trauma Fellow',
@@ -620,6 +649,7 @@ export const DEMO_DOCTORS = [
   {
     _id: 'doc_deepika',
     user: { _id: 'user_deepika', name: 'Dr. Deepika Padukone', email: 'deepika@kokilaben.com', phone: '+91 9500052350' },
+    avatar: '/images/doctors/doc_female_1.jpg',
     hospital: DEMO_HOSPITALS[4],
     specialization: 'Ophthalmology',
     qualification: 'MBBS, MS (Ophthalmology), Cornea & Refractive Fellow',
