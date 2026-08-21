@@ -321,21 +321,21 @@ const DoctorsDirectory = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: idx * 0.05 }}
-                className="bg-white dark:bg-slate-900 rounded-[2.5rem] border border-slate-100 dark:border-slate-800 p-7 shadow-xl shadow-slate-200/40 dark:shadow-none hover:shadow-2xl hover:-translate-y-1.5 transition-all flex flex-col justify-between"
+                className="bg-white dark:bg-slate-900 rounded-[2.5rem] border border-slate-100 dark:border-slate-800 p-7 shadow-xl shadow-slate-200/40 dark:shadow-none hover:shadow-2xl hover:-translate-y-1.5 transition-all flex flex-col justify-between overflow-hidden"
               >
                 <div>
                   {/* Doctor Info */}
                   <div className="flex items-start gap-4 mb-5">
-                    <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary-500 to-primary-600 text-white flex items-center justify-center font-bold text-2xl shadow-lg shadow-primary-500/20 shrink-0">
+                    <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary-500 to-primary-600 text-white flex items-center justify-center font-bold text-2xl shadow-lg shadow-primary-500/20 shrink-0 mt-0.5">
                       {doc.user?.name ? doc.user.name.charAt(0) : 'D'}
                     </div>
 
-                    <div>
-                      <h3 className="text-lg font-black text-slate-900 dark:text-white leading-tight">
+                    <div className="flex-1 min-w-0">
+                      <h3 className="text-lg font-black text-slate-900 dark:text-white leading-tight break-words">
                         {doc.user?.name}
                       </h3>
                       <p className="text-primary-500 font-bold text-xs mt-0.5">{doc.specialization}</p>
-                      <p className="text-slate-400 text-[11px] truncate">{doc.qualification}</p>
+                      <p className="text-slate-400 text-[11px] leading-relaxed break-words line-clamp-2 mt-0.5">{doc.qualification}</p>
                     </div>
                   </div>
 

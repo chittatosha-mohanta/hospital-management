@@ -319,19 +319,19 @@ const HospitalDetail = () => {
                     key={doc._id}
                     initial={{ opacity: 0, y: 15 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="bg-white dark:bg-slate-900 rounded-[2.5rem] border border-slate-100 dark:border-slate-800 p-7 shadow-xl shadow-slate-200/40 dark:shadow-none hover:shadow-2xl transition-all flex flex-col justify-between"
+                    className="bg-white dark:bg-slate-900 rounded-[2.5rem] border border-slate-100 dark:border-slate-800 p-7 shadow-xl shadow-slate-200/40 dark:shadow-none hover:shadow-2xl transition-all flex flex-col justify-between overflow-hidden"
                   >
                     <div>
-                      <div className="flex items-center gap-4 mb-5">
-                        <div className="w-16 h-16 rounded-2xl bg-primary-50 dark:bg-primary-950/30 text-primary-500 flex items-center justify-center font-bold text-xl shrink-0">
+                      <div className="flex items-start gap-4 mb-5">
+                        <div className="w-16 h-16 rounded-2xl bg-primary-50 dark:bg-primary-950/30 text-primary-500 flex items-center justify-center font-bold text-xl shrink-0 mt-0.5">
                           {doc.user?.name ? doc.user.name.charAt(0) : <User className="w-7 h-7" />}
                         </div>
-                        <div>
-                          <h3 className="text-lg font-black text-slate-900 dark:text-white leading-snug">
+                        <div className="flex-1 min-w-0">
+                          <h3 className="text-lg font-black text-slate-900 dark:text-white leading-snug break-words">
                             {doc.user?.name || 'Specialist Doctor'}
                           </h3>
-                          <p className="text-primary-500 font-semibold text-xs">{doc.specialization}</p>
-                          <p className="text-slate-400 text-[11px] truncate">{doc.qualification}</p>
+                          <p className="text-primary-500 font-semibold text-xs mt-0.5">{doc.specialization}</p>
+                          <p className="text-slate-400 text-[11px] leading-relaxed break-words line-clamp-2 mt-0.5">{doc.qualification}</p>
                         </div>
                       </div>
 
