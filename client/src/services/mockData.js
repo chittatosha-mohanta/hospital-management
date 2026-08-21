@@ -133,6 +133,16 @@ export const DEMO_HOSPITALS = [
   }
 ];
 
+const defaultWeekSchedule = [
+  { day: 'Monday', startTime: '09:00', endTime: '17:00', slotDuration: 30, maxPatients: 16, isAvailable: true },
+  { day: 'Tuesday', startTime: '09:00', endTime: '17:00', slotDuration: 30, maxPatients: 16, isAvailable: true },
+  { day: 'Wednesday', startTime: '09:00', endTime: '17:00', slotDuration: 30, maxPatients: 16, isAvailable: true },
+  { day: 'Thursday', startTime: '09:00', endTime: '17:00', slotDuration: 30, maxPatients: 16, isAvailable: true },
+  { day: 'Friday', startTime: '09:00', endTime: '14:00', slotDuration: 30, maxPatients: 10, isAvailable: true },
+  { day: 'Saturday', startTime: '10:00', endTime: '13:00', slotDuration: 30, maxPatients: 6, isAvailable: true },
+  { day: 'Sunday', startTime: '10:00', endTime: '13:00', slotDuration: 30, maxPatients: 6, isAvailable: false },
+];
+
 export const DEMO_DOCTORS = [
   // 🏥 Apollo Hospital (Chennai)
   {
@@ -145,6 +155,7 @@ export const DEMO_DOCTORS = [
     consultationFee: 1200,
     bio: 'Senior Interventional Cardiologist specializing in complex coronary interventions, heart failure management, and preventive cardiac wellness.',
     languages: ['English', 'Hindi', 'Tamil'],
+    schedule: defaultWeekSchedule,
     rating: 4.9,
     numReviews: 48,
     isVerified: true,
@@ -160,6 +171,7 @@ export const DEMO_DOCTORS = [
     consultationFee: 800,
     bio: 'Consultant Pediatrician and Neonatologist with extensive clinical expertise in childhood growth, immunizations, and neonatal intensive care.',
     languages: ['English', 'Telugu', 'Tamil'],
+    schedule: defaultWeekSchedule,
     rating: 4.8,
     numReviews: 36,
     isVerified: true,
@@ -175,6 +187,7 @@ export const DEMO_DOCTORS = [
     consultationFee: 1500,
     bio: 'Renowned Neurosurgeon specializing in minimally invasive brain surgery, spinal fusion, and neuro-vascular oncology.',
     languages: ['English', 'Bengali', 'Hindi'],
+    schedule: defaultWeekSchedule,
     rating: 5.0,
     numReviews: 42,
     isVerified: true,
@@ -190,6 +203,7 @@ export const DEMO_DOCTORS = [
     consultationFee: 1100,
     bio: 'Orthopedic and Robotic Joint Replacement Surgeon specializing in total knee, hip replacements, and sports arthroscopy.',
     languages: ['English', 'Malayalam', 'Tamil'],
+    schedule: defaultWeekSchedule,
     rating: 4.9,
     numReviews: 29,
     isVerified: true,
@@ -205,6 +219,7 @@ export const DEMO_DOCTORS = [
     consultationFee: 700,
     bio: 'Lead Internal Medicine Specialist with expertise in diabetes, hypertension, infectious diseases, and comprehensive health checkups.',
     languages: ['English', 'Hindi', 'Tamil'],
+    schedule: defaultWeekSchedule,
     rating: 4.7,
     numReviews: 53,
     isVerified: true,
@@ -220,6 +235,7 @@ export const DEMO_DOCTORS = [
     consultationFee: 900,
     bio: 'Clinical and Cosmetic Dermatologist specializing in laser treatments, acne management, psoriasis, and anti-aging therapies.',
     languages: ['English', 'Marathi', 'Hindi'],
+    schedule: defaultWeekSchedule,
     rating: 4.8,
     numReviews: 31,
     isVerified: true,
@@ -237,6 +253,7 @@ export const DEMO_DOCTORS = [
     consultationFee: 1500,
     bio: 'Director of Interventional Cardiology with over 4,000 successful angioplasties, pacemaker implants, and TAVR procedures.',
     languages: ['English', 'Hindi', 'Punjabi'],
+    schedule: defaultWeekSchedule,
     rating: 4.9,
     numReviews: 62,
     isVerified: true,
@@ -252,6 +269,7 @@ export const DEMO_DOCTORS = [
     consultationFee: 900,
     bio: 'Senior Consultant Pediatrician focusing on pediatric allergies, developmental milestones, nutrition, and infectious illnesses.',
     languages: ['English', 'Hindi'],
+    schedule: defaultWeekSchedule,
     rating: 4.8,
     numReviews: 40,
     isVerified: true,
@@ -267,6 +285,7 @@ export const DEMO_DOCTORS = [
     consultationFee: 1800,
     bio: 'Chief Medical Oncologist with expertise in precision oncology, immunotherapy, targeted therapies, and hematological malignancies.',
     languages: ['English', 'Hindi'],
+    schedule: defaultWeekSchedule,
     rating: 5.0,
     numReviews: 55,
     isVerified: true,
@@ -282,6 +301,7 @@ export const DEMO_DOCTORS = [
     consultationFee: 1200,
     bio: 'Senior Obstetrician and Gynecological Surgeon specializing in high-risk pregnancies, laparoscopic hysterectomy, and PCOS care.',
     languages: ['English', 'Hindi', 'Punjabi'],
+    schedule: defaultWeekSchedule,
     rating: 4.9,
     numReviews: 47,
     isVerified: true,
@@ -297,6 +317,7 @@ export const DEMO_DOCTORS = [
     consultationFee: 1400,
     bio: 'Consultant Gastroenterologist and Hepatologist specializing in endoscopy, colonoscopy, fatty liver disease, and IBD.',
     languages: ['English', 'Hindi'],
+    schedule: defaultWeekSchedule,
     rating: 4.7,
     numReviews: 38,
     isVerified: true,
@@ -312,6 +333,7 @@ export const DEMO_DOCTORS = [
     consultationFee: 850,
     bio: 'ENT and Cochlear Implant Surgeon specialized in endoscopic sinus surgery, vertigo management, and pediatric hearing disorders.',
     languages: ['English', 'Gujarati', 'Hindi'],
+    schedule: defaultWeekSchedule,
     rating: 4.8,
     numReviews: 24,
     isVerified: true,
@@ -329,6 +351,7 @@ export const DEMO_DOCTORS = [
     consultationFee: 1300,
     bio: 'Chief Cardiovascular & Thoracic Surgeon with over 6,000 open heart, bypass, and valve replacement surgeries performed.',
     languages: ['English', 'Hindi'],
+    schedule: defaultWeekSchedule,
     rating: 4.9,
     numReviews: 73,
     isVerified: true,
@@ -344,6 +367,7 @@ export const DEMO_DOCTORS = [
     consultationFee: 1000,
     bio: 'Pediatric Intensive Care Consultant specializing in childhood asthma, acute infections, newborn health, and immunization programs.',
     languages: ['English', 'Hindi'],
+    schedule: defaultWeekSchedule,
     rating: 4.8,
     numReviews: 39,
     isVerified: true,
@@ -359,6 +383,7 @@ export const DEMO_DOCTORS = [
     consultationFee: 1600,
     bio: 'Senior Neurologist with extensive expertise in acute stroke intervention, Parkinson’s disease, migraine, and epilepsy management.',
     languages: ['English', 'Hindi'],
+    schedule: defaultWeekSchedule,
     rating: 5.0,
     numReviews: 61,
     isVerified: true,
@@ -374,6 +399,7 @@ export const DEMO_DOCTORS = [
     consultationFee: 950,
     bio: 'Cosmetic Dermatologist and Hair Transplant Surgeon specializing in PRP treatments, scar revision, and advanced skin care.',
     languages: ['English', 'Kannada', 'Hindi'],
+    schedule: defaultWeekSchedule,
     rating: 4.8,
     numReviews: 44,
     isVerified: true,
@@ -389,6 +415,7 @@ export const DEMO_DOCTORS = [
     consultationFee: 1250,
     bio: 'Sports Injury Specialist and Orthopedic Surgeon dealing with ligament tears (ACL/PCL), meniscus repair, and shoulder arthroscopy.',
     languages: ['English', 'Hindi', 'Marathi'],
+    schedule: defaultWeekSchedule,
     rating: 4.9,
     numReviews: 50,
     isVerified: true,
@@ -404,6 +431,7 @@ export const DEMO_DOCTORS = [
     consultationFee: 1150,
     bio: 'Consultant Endocrinologist managing complex Type 1 and Type 2 diabetes, thyroid conditions, hormonal imbalances, and pituitary disorders.',
     languages: ['English', 'Telugu', 'Hindi'],
+    schedule: defaultWeekSchedule,
     rating: 4.7,
     numReviews: 28,
     isVerified: true,
@@ -421,6 +449,7 @@ export const DEMO_DOCTORS = [
     consultationFee: 1400,
     bio: 'Preventive Cardiologist focusing on lifestyle-guided reversal of coronary artery disease, heart failure clinic, and cardiac rehabilitation.',
     languages: ['English', 'Hindi', 'Kannada'],
+    schedule: defaultWeekSchedule,
     rating: 4.9,
     numReviews: 58,
     isVerified: true,
@@ -436,6 +465,7 @@ export const DEMO_DOCTORS = [
     consultationFee: 950,
     bio: 'Pediatric Pulmonologist specializing in childhood recurrent cough, respiratory infections, allergies, and pediatric sleep disorders.',
     languages: ['English', 'Kannada', 'Hindi'],
+    schedule: defaultWeekSchedule,
     rating: 4.8,
     numReviews: 35,
     isVerified: true,
@@ -451,6 +481,7 @@ export const DEMO_DOCTORS = [
     consultationFee: 1700,
     bio: 'Senior Nephrologist and Renal Transplant Physician with over 1,200 kidney transplants and advanced dialysis care managed.',
     languages: ['English', 'Kannada', 'Telugu'],
+    schedule: defaultWeekSchedule,
     rating: 5.0,
     numReviews: 67,
     isVerified: true,
@@ -466,6 +497,7 @@ export const DEMO_DOCTORS = [
     consultationFee: 1300,
     bio: 'Reproductive Medicine & Infertility Specialist helping couples with IVF, IUI, recurrent miscarriage treatments, and laparoscopic fertility surgery.',
     languages: ['English', 'Tamil', 'Kannada'],
+    schedule: defaultWeekSchedule,
     rating: 4.9,
     numReviews: 49,
     isVerified: true,
@@ -481,6 +513,7 @@ export const DEMO_DOCTORS = [
     consultationFee: 1100,
     bio: 'Consultant Psychiatrist providing compassionate care for clinical anxiety, depression, workplace stress, ADHD, and psychotherapy.',
     languages: ['English', 'Hindi', 'Kannada'],
+    schedule: defaultWeekSchedule,
     rating: 4.8,
     numReviews: 41,
     isVerified: true,
@@ -496,6 +529,7 @@ export const DEMO_DOCTORS = [
     consultationFee: 1050,
     bio: 'Minimally Invasive & Bariatric Surgeon specializing in laparoscopic gall bladder, hernia repair, appendix surgery, and weight-loss interventions.',
     languages: ['English', 'Hindi', 'Marathi'],
+    schedule: defaultWeekSchedule,
     rating: 4.7,
     numReviews: 30,
     isVerified: true,
@@ -513,6 +547,7 @@ export const DEMO_DOCTORS = [
     consultationFee: 1600,
     bio: 'Senior Consultant Interventional Cardiologist with over two decades of experience in complex angioplasty, heart failure, and structural heart care.',
     languages: ['English', 'Hindi', 'Gujarati'],
+    schedule: defaultWeekSchedule,
     rating: 5.0,
     numReviews: 89,
     isVerified: true,
@@ -528,6 +563,7 @@ export const DEMO_DOCTORS = [
     consultationFee: 1100,
     bio: 'Developmental & Behavioral Pediatrician focusing on early childhood development, pediatric nutrition, autism support, and routine wellness.',
     languages: ['English', 'Marathi', 'Hindi'],
+    schedule: defaultWeekSchedule,
     rating: 4.9,
     numReviews: 54,
     isVerified: true,
@@ -543,6 +579,7 @@ export const DEMO_DOCTORS = [
     consultationFee: 2000,
     bio: 'Lead Neuro-Oncologist & Minimally Invasive Spine Surgeon specializing in skull-base tumors, endoscopic spinal surgery, and brain bypass.',
     languages: ['English', 'Hindi', 'Urdu'],
+    schedule: defaultWeekSchedule,
     rating: 5.0,
     numReviews: 98,
     isVerified: true,
@@ -558,6 +595,7 @@ export const DEMO_DOCTORS = [
     consultationFee: 1200,
     bio: 'Senior Dermatologist specializing in laser dermatology, pigmentation treatments, eczema, hair loss therapies, and medical aesthetics.',
     languages: ['English', 'Hindi', 'Punjabi'],
+    schedule: defaultWeekSchedule,
     rating: 4.8,
     numReviews: 46,
     isVerified: true,
@@ -573,6 +611,7 @@ export const DEMO_DOCTORS = [
     consultationFee: 1350,
     bio: 'Trauma & Complex Joint Reconstruction Surgeon with specialized focus on sports medicine, fracture care, and robotic knee arthroplasty.',
     languages: ['English', 'Hindi', 'Sindhi'],
+    schedule: defaultWeekSchedule,
     rating: 4.9,
     numReviews: 52,
     isVerified: true,
@@ -588,6 +627,7 @@ export const DEMO_DOCTORS = [
     consultationFee: 1000,
     bio: 'Cornea and Refractive Eye Surgeon with expertise in robotic blade-free LASIK, cataract phacoemulsification, and glaucoma management.',
     languages: ['English', 'Kannada', 'Hindi'],
+    schedule: defaultWeekSchedule,
     rating: 4.9,
     numReviews: 60,
     isVerified: true,
@@ -662,7 +702,87 @@ export const DEMO_REVIEWS = [
   }
 ];
 
-export const generateDemoSlots = (dateString) => {
+export const getHospitalDoctors = (hospitalQuery) => {
+  if (!hospitalQuery) return DEMO_DOCTORS.slice(0, 6);
+  const q = String(hospitalQuery).toLowerCase();
+  const matched = DEMO_DOCTORS.filter(d => 
+    d.hospital?._id?.toLowerCase() === q ||
+    d.hospital?.name?.toLowerCase().includes(q) ||
+    d.hospital?.slug?.toLowerCase().includes(q)
+  );
+  return matched.length > 0 ? matched : DEMO_DOCTORS.slice(0, 6);
+};
+
+export const getHospitalStats = (hospitalQuery) => {
+  const docs = getHospitalDoctors(hospitalQuery);
+  const hosp = DEMO_HOSPITALS.find(h => 
+    h._id.toLowerCase() === String(hospitalQuery).toLowerCase() ||
+    h.name.toLowerCase().includes(String(hospitalQuery).toLowerCase())
+  ) || DEMO_HOSPITALS[0];
+
+  return {
+    hospitalName: hosp.name,
+    status: 'approved',
+    totalDoctors: docs.length,
+    totalAppointments: 18,
+    avgRating: hosp.rating || 4.9,
+    appointmentsByStatus: {
+      pending: 3,
+      confirmed: 11,
+      completed: 4
+    }
+  };
+};
+
+export const getHospitalAppointments = (hospitalQuery) => {
+  const docs = getHospitalDoctors(hospitalQuery);
+  const hospName = docs[0]?.hospital?.name || 'Main Multi-Specialty Hospital';
+  const today = new Date().toISOString().split('T')[0];
+
+  return [
+    {
+      _id: 'apt_demo_1',
+      patient: { name: 'Aarav Patel', email: 'aarav@gmail.com', phone: '+91 9820011223' },
+      doctor: docs[0],
+      doctorName: docs[0]?.user?.name,
+      hospitalName: hospName,
+      date: today,
+      timeSlot: '10:00 AM',
+      roomOrClinic: 'OPD Room 101',
+      reason: 'Chest pain evaluation and ECG follow-up',
+      status: 'confirmed',
+      consultationFee: docs[0]?.consultationFee || 1200
+    },
+    {
+      _id: 'apt_demo_2',
+      patient: { name: 'Riya Sen', email: 'riya@gmail.com', phone: '+91 9820011224' },
+      doctor: docs[1] || docs[0],
+      doctorName: (docs[1] || docs[0])?.user?.name,
+      hospitalName: hospName,
+      date: today,
+      timeSlot: '11:30 AM',
+      roomOrClinic: 'Pediatric Suite 2',
+      reason: 'Routine infant immunization and developmental check',
+      status: 'confirmed',
+      consultationFee: (docs[1] || docs[0])?.consultationFee || 800
+    },
+    {
+      _id: 'apt_demo_3',
+      patient: { name: 'Vikram Joshi', email: 'vikram.j@gmail.com', phone: '+91 9820011225' },
+      doctor: docs[2] || docs[0],
+      doctorName: (docs[2] || docs[0])?.user?.name,
+      hospitalName: hospName,
+      date: today,
+      timeSlot: '02:30 PM',
+      roomOrClinic: 'Consultation Room 3',
+      reason: 'Chronic migraine and neurological review',
+      status: 'pending',
+      consultationFee: (docs[2] || docs[0])?.consultationFee || 1500
+    }
+  ];
+};
+
+export const generateDemoSlots = () => {
   const times = [
     '09:00 AM', '09:30 AM', '10:00 AM', '10:30 AM', 
     '11:00 AM', '11:30 AM', '02:00 PM', '02:30 PM', 

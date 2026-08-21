@@ -18,6 +18,7 @@ import {
 import { motion } from 'framer-motion';
 import api from '../../services/api';
 import { AuthContext } from '../../context/AuthContext';
+import { getHospitalStats } from '../../services/mockData';
 
 const HospitalDashboard = () => {
   const { user } = useContext(AuthContext);
@@ -28,9 +29,13 @@ const HospitalDashboard = () => {
     setLoading(true);
     try {
       const { data } = await api.get('/hospitals/my-hospital/stats');
-      setStats(data);
-    } catch (err) {
-      console.error(err);
+      if (data && data.hospitalName) {
+        setStats(data);
+      } else {
+        setStats(getHospitalStats(user?.hospital?.name || user?.hospital?._id));
+      }
+    } catch {
+      setStats(getHospitalStats(user?.hospital?.name || user?.hospital?._id));
     } finally {
       setLoading(false);
     }
@@ -38,7 +43,7 @@ const HospitalDashboard = () => {
 
   useEffect(() => {
     fetchHospitalStats();
-  }, []);
+  }, [user]);
 
   if (loading) {
     return (

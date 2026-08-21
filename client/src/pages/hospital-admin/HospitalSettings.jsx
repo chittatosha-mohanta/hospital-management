@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import DashboardLayout from '../../layouts/DashboardLayout';
 import { 
   Building2, 
@@ -13,8 +13,11 @@ import {
 } from 'lucide-react';
 import api from '../../services/api';
 import { toast } from 'react-toastify';
+import { AuthContext } from '../../context/AuthContext';
+import { DEMO_HOSPITALS } from '../../services/mockData';
 
 const HospitalSettings = () => {
+  const { user } = useContext(AuthContext);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -34,29 +37,44 @@ const HospitalSettings = () => {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
 
+  const applyHospitalData = (data) => {
+    setFormData({
+      name: data.name || '',
+      email: data.email || '',
+      phone: data.phone || '',
+      website: data.website || '',
+      description: data.description || '',
+      street: data.address?.street || '',
+      city: data.address?.city || '',
+      state: data.address?.state || '',
+      pincode: data.address?.pincode || '',
+      bedCount: data.bedCount || 0,
+      emergencyServices: data.emergencyServices || false,
+      ambulanceService: data.ambulanceService || false,
+      specialties: (data.specialties || []).join(', '),
+      facilities: (data.facilities || []).join(', '),
+    });
+  };
+
   const fetchHospital = async () => {
     setLoading(true);
     try {
       const { data } = await api.get('/hospitals/my-hospital/details');
-      setFormData({
-        name: data.name || '',
-        email: data.email || '',
-        phone: data.phone || '',
-        website: data.website || '',
-        description: data.description || '',
-        street: data.address?.street || '',
-        city: data.address?.city || '',
-        state: data.address?.state || '',
-        pincode: data.address?.pincode || '',
-        bedCount: data.bedCount || 0,
-        emergencyServices: data.emergencyServices || false,
-        ambulanceService: data.ambulanceService || false,
-        specialties: (data.specialties || []).join(', '),
-        facilities: (data.facilities || []).join(', '),
-      });
-    } catch (err) {
-      console.error(err);
-      toast.error('Failed to load hospital settings');
+      if (data && data.name) {
+        applyHospitalData(data);
+      } else {
+        const hosp = DEMO_HOSPITALS.find(h => 
+          h._id === user?.hospital?._id || 
+          h.name?.toLowerCase().includes(user?.hospital?.name?.toLowerCase() || '')
+        ) || DEMO_HOSPITALS[0];
+        applyHospitalData(hosp);
+      }
+    } catch {
+      const hosp = DEMO_HOSPITALS.find(h => 
+        h._id === user?.hospital?._id || 
+        h.name?.toLowerCase().includes(user?.hospital?.name?.toLowerCase() || '')
+      ) || DEMO_HOSPITALS[0];
+      applyHospitalData(hosp);
     } finally {
       setLoading(false);
     }
@@ -64,7 +82,7 @@ const HospitalSettings = () => {
 
   useEffect(() => {
     fetchHospital();
-  }, []);
+  }, [user]);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;

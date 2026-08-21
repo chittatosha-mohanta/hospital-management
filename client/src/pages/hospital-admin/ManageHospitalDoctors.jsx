@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import DashboardLayout from '../../layouts/DashboardLayout';
 import { 
   Users, 
@@ -20,8 +20,11 @@ import {
 import { motion, AnimatePresence } from 'framer-motion';
 import api from '../../services/api';
 import { toast } from 'react-toastify';
+import { AuthContext } from '../../context/AuthContext';
+import { getHospitalDoctors } from '../../services/mockData';
 
 const ManageHospitalDoctors = () => {
+  const { user } = useContext(AuthContext);
   const [doctors, setDoctors] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showAddModal, setShowAddModal] = useState(false);
@@ -59,10 +62,15 @@ const ManageHospitalDoctors = () => {
     setLoading(true);
     try {
       const { data } = await api.get('/doctors/my-hospital/list');
-      setDoctors(data || []);
-    } catch (err) {
-      console.error(err);
-      toast.error('Failed to load doctors');
+      if (data && data.length > 0) {
+        setDoctors(data);
+      } else {
+        const fallback = getHospitalDoctors(user?.hospital?.name || user?.hospital?._id);
+        setDoctors(fallback);
+      }
+    } catch {
+      const fallback = getHospitalDoctors(user?.hospital?.name || user?.hospital?._id);
+      setDoctors(fallback);
     } finally {
       setLoading(false);
     }
@@ -70,7 +78,7 @@ const ManageHospitalDoctors = () => {
 
   useEffect(() => {
     fetchDoctors();
-  }, []);
+  }, [user]);
 
   const [activeModalTab, setActiveModalTab] = useState('weekly'); // 'weekly' | 'dates'
   const [tempDateOverrides, setTempDateOverrides] = useState([]);

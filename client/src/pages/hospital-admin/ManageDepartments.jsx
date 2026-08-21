@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import api from '../../services/api';
 import { AuthContext } from '../../context/AuthContext';
 import { toast } from 'react-toastify';
+import { DEMO_DEPARTMENTS_BY_HOSPITAL } from '../../services/mockData';
 
 const ManageDepartments = () => {
   const { user } = useContext(AuthContext);
@@ -18,11 +19,16 @@ const ManageDepartments = () => {
     try {
       if (user?.hospital?._id) {
         const { data } = await api.get(`/departments/${user.hospital._id}`);
-        setDepartments(data || []);
+        if (data && data.length > 0) {
+          setDepartments(data);
+        } else {
+          setDepartments(DEMO_DEPARTMENTS_BY_HOSPITAL[user.hospital._id] || DEMO_DEPARTMENTS_BY_HOSPITAL['hosp_apollo']);
+        }
+      } else {
+        setDepartments(DEMO_DEPARTMENTS_BY_HOSPITAL['hosp_apollo']);
       }
-    } catch (err) {
-      console.error(err);
-      toast.error('Failed to load departments');
+    } catch {
+      setDepartments(DEMO_DEPARTMENTS_BY_HOSPITAL[user?.hospital?._id] || DEMO_DEPARTMENTS_BY_HOSPITAL['hosp_apollo']);
     } finally {
       setLoading(false);
     }
@@ -30,7 +36,7 @@ const ManageDepartments = () => {
 
   useEffect(() => {
     fetchDepartments();
-  }, []);
+  }, [user]);
 
   const handleCreateDepartment = async (e) => {
     e.preventDefault();
