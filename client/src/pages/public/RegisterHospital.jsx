@@ -98,7 +98,7 @@ const RegisterHospital = () => {
       toast.success('🎉 Hospital registered successfully! Awaiting Platform Admin approval.');
       navigate('/hospital-admin');
     } catch (error) {
-      toast.error(error.response?.data?.message || 'Registration failed');
+      toast.error(error.response?.data?.message || error.message || 'Registration failed');
     } finally {
       setLoading(false);
     }

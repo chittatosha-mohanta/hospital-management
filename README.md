@@ -107,39 +107,52 @@ Simply link the repository to your Vercel project and it will build and deploy t
 
 ---
 
-## 🔑 Demo Credentials
+## 🔑 Demo Credentials & Instant 1-Click Login
 
-After running `npm run seed`, the following credentials can be used for testing and demoing portals:
+> 💡 **Quick Demo Access**: On the web application's **Login Page**, you can simply click any of the **⚡ Instant Demo Access (1-Click Login)** cards to immediately autofill and log in with that persona!
 
 ### 👑 Platform Super Admin
-- **Email**: `admin@healthcarepro.com`
-- **Password**: `admin123`
+| Role | Name | Email | Password |
+|---|---|---|---|
+| Platform Super Admin | Platform Admin | `admin@healthcarepro.com` | `admin123` |
 
-### 🏢 Hospital Admins
-- **Password (for all admins)**: `hospital123`
-- **Portals**:
-  1. Apollo Multi-Specialty Hospital (Chennai): `rajesh@apollo.com`
-  2. Fortis Memorial Research Institute (Gurugram): `priya@fortis.com`
-  3. Max Super Speciality Hospital (Delhi): `sanjay@max.com`
-  4. Manipal Hospital (Bengaluru): `deepak@manipal.com`
-  5. Kokilaben Dhirubhai Ambani Hospital (Mumbai): `anil@kokilaben.com`
+### 🏢 Hospital Admins (5 Hospitals)
+| Hospital Name | Location | Admin Contact | Email | Password |
+|---|---|---|---|---|
+| Apollo Multi-Specialty Hospital | Chennai, TN | Rajesh Kumar | `rajesh@apollo.com` | `hospital123` |
+| Fortis Memorial Research Institute | Gurugram, HR | Priya Sharma | `priya@fortis.com` | `hospital123` |
+| Max Super Speciality Hospital | Delhi | Sanjay Dutt | `sanjay@max.com` | `hospital123` |
+| Manipal Hospital | Bengaluru, KA | Deepak Chopra | `deepak@manipal.com` | `hospital123` |
+| Kokilaben Dhirubhai Ambani Hospital | Mumbai, MH | Anil Kapoor | `anil@kokilaben.com` | `hospital123` |
 
-### 🩺 Doctors
-- **Password (for all doctors)**: `doctor123`
-- **Portals**:
-  1. Dr. Ananya Verma (Apollo Cardiology): `ananya@apollo.com`
-  2. Dr. Arjun Reddy (Apollo Pediatrics): `arjun@apollo.com`
-  3. Dr. Rahul Joshi (Fortis Cardiology): `rahul@fortis.com`
-  4. Dr. Sonia Gupta (Fortis Pediatrics): `sonia@fortis.com`
-  5. Dr. Sanjay Dutt (Max Cardiology): `sanjaydutt@max.com`
-  6. Dr. Karan Johar (Max Pediatrics): `karan@max.com`
-  7. Dr. Deepak Chopra (Manipal Cardiology): `chopra@manipal.com`
-  8. Dr. Divya Spandana (Manipal Pediatrics): `divya@manipal.com`
-  9. Dr. Anil Kapoor (Kokilaben Cardiology): `anilkapoor@kokilaben.com`
-  10. Dr. Madhuri Dixit (Kokilaben Pediatrics): `madhuri@kokilaben.com`
+### 🩺 Doctors (10 Doctors Across 5 Hospitals & Departments)
+| Doctor Name | Hospital | Department / Specialization | Email | Password |
+|---|---|---|---|---|
+| Dr. Ananya Verma | Apollo Hospital | Cardiology | `ananya@apollo.com` | `doctor123` |
+| Dr. Arjun Reddy | Apollo Hospital | Pediatrics | `arjun@apollo.com` | `doctor123` |
+| Dr. Rahul Joshi | Fortis Memorial | Cardiology | `rahul@fortis.com` | `doctor123` |
+| Dr. Sonia Gupta | Fortis Memorial | Pediatrics | `sonia@fortis.com` | `doctor123` |
+| Dr. Sanjay Dutt | Max Hospital | Cardiology | `sanjaydutt@max.com` | `doctor123` |
+| Dr. Karan Johar | Max Hospital | Pediatrics | `karan@max.com` | `doctor123` |
+| Dr. Deepak Chopra | Manipal Hospital | Cardiology | `chopra@manipal.com` | `doctor123` |
+| Dr. Divya Spandana | Manipal Hospital | Pediatrics | `divya@manipal.com` | `doctor123` |
+| Dr. Anil Kapoor | Kokilaben Hospital | Cardiology | `anilkapoor@kokilaben.com` | `doctor123` |
+| Dr. Madhuri Dixit | Kokilaben Hospital | Pediatrics | `madhuri@kokilaben.com` | `doctor123` |
 
-### 👤 Patients (20 Accounts)
-- **Password (for all patients)**: `patient123`
-- **Portals**:
-  - `patient1@gmail.com` to `patient20@gmail.com` (e.g. `patient1@gmail.com`, `patient2@gmail.com`, etc.)
+### 👤 Patients (20 Patient Accounts)
+*All patient accounts have password: `patient123`*
+| Patient User | Email | Phone | Gender | Blood Group | Default Appointment |
+|---|---|---|---|---|---|
+| Patient User 1 | `patient1@gmail.com` | `+91 9800000001` | Male | O+ | Dr. Ananya Verma (Cardiology) |
+| Patient User 2 | `patient2@gmail.com` | `+91 9800000002` | Female | O+ | Dr. Arjun Reddy (Pediatrics) |
+| Patient User 3 | `patient3@gmail.com` | `+91 9800000003` | Male | O+ | Dr. Rahul Joshi (Cardiology) |
+| Patient User 4 | `patient4@gmail.com` | `+91 9800000004` | Female | O+ | Dr. Sonia Gupta (Pediatrics) |
+| Patient User 5 | `patient5@gmail.com` | `+91 9800000005` | Male | O+ | Dr. Sanjay Dutt (Cardiology) |
+| Patient User 6 | `patient6@gmail.com` | `+91 9800000006` | Female | O+ | Dr. Karan Johar (Pediatrics) |
+| Patient User 7 | `patient7@gmail.com` | `+91 9800000007` | Male | O+ | Dr. Deepak Chopra (Cardiology) |
+| Patient User 8 | `patient8@gmail.com` | `+91 9800000008` | Female | O+ | Dr. Divya Spandana (Pediatrics) |
+| Patient User 9 | `patient9@gmail.com` | `+91 9800000009` | Male | O+ | Dr. Anil Kapoor (Cardiology) |
+| Patient User 10 | `patient10@gmail.com` | `+91 9800000010` | Female | O+ | Dr. Madhuri Dixit (Pediatrics) |
+| Patient User 11 to 20 | `patient11@gmail.com` to `patient20@gmail.com` | `+91 9800000011` ... | Alternating | O+ | Available for live bookings |
+
 

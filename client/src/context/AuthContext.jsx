@@ -13,7 +13,11 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (email, password) => {
     if (!supabase) {
-      throw new Error('Supabase is not configured. Please define VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY in your Vercel/environment variables.');
+      // Fallback to local MongoDB authentication
+      const { data } = await api.post('/auth/login', { email, password });
+      setUser(data);
+      localStorage.setItem('userInfo', JSON.stringify(data));
+      return data;
     }
     // 1. Log in via Supabase
     const { error: sbError } = await supabase.auth.signInWithPassword({
@@ -31,7 +35,11 @@ export const AuthProvider = ({ children }) => {
 
   const registerPatient = async (userData) => {
     if (!supabase) {
-      throw new Error('Supabase is not configured. Please define VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY in your Vercel/environment variables.');
+      // Fallback to local MongoDB registration
+      const { data } = await api.post('/auth/register', userData);
+      setUser(data);
+      localStorage.setItem('userInfo', JSON.stringify(data));
+      return data;
     }
     // 1. Register user via Supabase
     const { error: sbError } = await supabase.auth.signUp({
@@ -49,7 +57,11 @@ export const AuthProvider = ({ children }) => {
 
   const registerHospital = async (hospitalData) => {
     if (!supabase) {
-      throw new Error('Supabase is not configured. Please define VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY in your Vercel/environment variables.');
+      // Fallback to local MongoDB registration
+      const { data } = await api.post('/auth/register-hospital', hospitalData);
+      setUser(data);
+      localStorage.setItem('userInfo', JSON.stringify(data));
+      return data;
     }
     // 1. Register hospital admin via Supabase
     const { error: sbError } = await supabase.auth.signUp({

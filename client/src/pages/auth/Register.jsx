@@ -47,7 +47,7 @@ const Register = () => {
       toast.success(`Welcome to HealthCarePro, ${user.name}!`);
       navigate('/patient');
     } catch (error) {
-      toast.error(error.response?.data?.message || 'Registration failed');
+      toast.error(error.response?.data?.message || error.message || 'Registration failed');
     } finally {
       setLoading(false);
     }
