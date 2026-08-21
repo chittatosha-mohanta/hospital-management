@@ -10,8 +10,8 @@ export function ZoomParallax({ images }) {
     offset: ['start start', 'end end'],
   });
 
-  // Scales for parallax
-  const centerScale = useTransform(scrollYProgress, [0, 1], [1, 4.2]);
+  // Scale center image so it completely fills the full screen edge-to-edge
+  const centerScale = useTransform(scrollYProgress, [0, 1], [1, 5.5]);
   const scale5 = useTransform(scrollYProgress, [0, 1], [1, 5]);
   const scale6 = useTransform(scrollYProgress, [0, 1], [1, 6]);
   const scale8 = useTransform(scrollYProgress, [0, 1], [1, 8]);
@@ -19,16 +19,19 @@ export function ZoomParallax({ images }) {
 
   const scales = [centerScale, scale5, scale6, scale5, scale6, scale8, scale9];
 
-  // Surrounding images fade out as user zooms in on the center photo
-  const outerOpacity = useTransform(scrollYProgress, [0, 0.45, 0.75], [1, 0.6, 0]);
+  // Surrounding images fade out completely as center zooms in
+  const outerOpacity = useTransform(scrollYProgress, [0, 0.4, 0.7], [1, 0.5, 0]);
 
-  // Full-screen hero content reveals when center photo is zoomed in
-  const centerHeroOpacity = useTransform(scrollYProgress, [0.65, 0.95], [0, 1]);
-  const centerHeroY = useTransform(scrollYProgress, [0.65, 0.95], [30, 0]);
+  // Hide the small title inside the center image as it scales up to avoid clash
+  const centerCardLabelOpacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
+
+  // Full-screen hero overlay card reveals at the end of the zoom
+  const centerHeroOpacity = useTransform(scrollYProgress, [0.75, 0.95], [0, 1]);
+  const centerHeroY = useTransform(scrollYProgress, [0.75, 0.95], [25, 0]);
 
   return (
-    <div ref={container} className="relative h-[240vh]">
-      <div className="sticky top-0 h-screen overflow-hidden flex items-center justify-center bg-slate-950">
+    <div ref={container} className="relative h-[220vh]">
+      <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center bg-slate-950">
         {images.map(({ src, alt, title, subtitle }, index) => {
           const isCenter = index === 0;
           const scale = scales[index % scales.length];
@@ -41,25 +44,25 @@ export function ZoomParallax({ images }) {
                 opacity: isCenter ? 1 : outerOpacity,
                 zIndex: isCenter ? 20 : 10,
               }}
-              className={`absolute top-0 flex h-full w-full items-center justify-center pointer-events-none ${
+              className={`absolute inset-0 flex h-full w-full items-center justify-center pointer-events-none ${
                 index === 1
-                  ? '[&>div]:!-top-[28vh] [&>div]:!left-[5vw] [&>div]:!h-[28vh] [&>div]:!w-[32vw]'
+                  ? '[&>div]:!-top-[28vh] [&>div]:!left-[5vw] [&>div]:!h-[26vh] [&>div]:!w-[32vw]'
                   : ''
               } ${
                 index === 2
-                  ? '[&>div]:!-top-[10vh] [&>div]:!-left-[26vw] [&>div]:!h-[42vh] [&>div]:!w-[22vw]'
+                  ? '[&>div]:!-top-[10vh] [&>div]:!-left-[26vw] [&>div]:!h-[40vh] [&>div]:!w-[22vw]'
                   : ''
               } ${
                 index === 3
-                  ? '[&>div]:!left-[28vw] [&>div]:!h-[28vh] [&>div]:!w-[24vw]'
+                  ? '[&>div]:!left-[28vw] [&>div]:!h-[26vh] [&>div]:!w-[24vw]'
                   : ''
               } ${
                 index === 4
-                  ? '[&>div]:!top-[28vh] [&>div]:!left-[6vw] [&>div]:!h-[26vh] [&>div]:!w-[22vw]'
+                  ? '[&>div]:!top-[28vh] [&>div]:!left-[6vw] [&>div]:!h-[24vh] [&>div]:!w-[22vw]'
                   : ''
               } ${
                 index === 5
-                  ? '[&>div]:!top-[28vh] [&>div]:!-left-[24vw] [&>div]:!h-[26vh] [&>div]:!w-[28vw]'
+                  ? '[&>div]:!top-[28vh] [&>div]:!-left-[24vw] [&>div]:!h-[24vh] [&>div]:!w-[28vw]'
                   : ''
               } ${
                 index === 6
@@ -69,7 +72,7 @@ export function ZoomParallax({ images }) {
             >
               <div
                 className={`relative ${
-                  isCenter ? 'h-[30vh] w-[32vw]' : 'h-[25vh] w-[25vw]'
+                  isCenter ? 'h-[28vh] w-[32vw]' : 'h-[24vh] w-[25vw]'
                 } rounded-3xl overflow-hidden shadow-2xl border border-white/20 dark:border-slate-700/60 group pointer-events-auto`}
               >
                 <img
@@ -77,9 +80,15 @@ export function ZoomParallax({ images }) {
                   alt={alt || `Parallax image ${index + 1}`}
                   className="h-full w-full object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent"></div>
+                
+                {/* Subtle vignette */}
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent"></div>
+                
                 {title && (
-                  <div className="absolute bottom-3 left-4 right-4 text-left pointer-events-none">
+                  <motion.div
+                    style={{ opacity: isCenter ? centerCardLabelOpacity : 1 }}
+                    className="absolute bottom-3 left-4 right-4 text-left pointer-events-none"
+                  >
                     <p className="text-white font-bold text-xs sm:text-sm drop-shadow-md truncate">
                       {title}
                     </p>
@@ -88,7 +97,7 @@ export function ZoomParallax({ images }) {
                         {subtitle}
                       </p>
                     )}
-                  </div>
+                  </motion.div>
                 )}
               </div>
             </motion.div>
@@ -98,9 +107,9 @@ export function ZoomParallax({ images }) {
         {/* Dynamic Zoomed-In Overlay Info Card */}
         <motion.div
           style={{ opacity: centerHeroOpacity, y: centerHeroY }}
-          className="absolute bottom-12 z-30 max-w-xl mx-auto px-6 text-center pointer-events-auto"
+          className="absolute bottom-10 z-30 max-w-xl mx-auto px-6 text-center pointer-events-auto"
         >
-          <div className="p-6 sm:p-8 glass rounded-[2.5rem] border border-white/20 shadow-2xl backdrop-blur-xl bg-slate-900/80">
+          <div className="p-6 sm:p-7 glass rounded-[2.5rem] border border-white/20 shadow-2xl backdrop-blur-2xl bg-slate-950/85">
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-primary-500/20 text-primary-300 text-xs font-bold uppercase tracking-wider mb-2 border border-primary-500/30">
               <Building2 className="w-3.5 h-3.5" /> Flagship Medical Centre
             </div>
