@@ -277,8 +277,14 @@ const ManageHospitalDoctors = () => {
                   {/* Top Row: Doctor Info & Remove */}
                   <div className="flex items-start justify-between gap-4 mb-4">
                     <div className="flex items-start gap-3.5 flex-1 min-w-0">
-                      <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary-500 to-primary-600 text-white flex items-center justify-center font-bold text-2xl shadow-lg shadow-primary-500/20 shrink-0 mt-0.5">
-                        {doc.user?.name ? doc.user.name.charAt(0) : 'D'}
+                      <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary-500 to-primary-600 text-white flex items-center justify-center font-bold text-2xl shadow-lg shadow-primary-500/20 shrink-0 mt-0.5 overflow-hidden border border-primary-500/20">
+                        {doc.avatar || doc.image ? (
+                          <img src={doc.avatar || doc.image} alt={doc.user?.name || 'Doctor'} className="w-full h-full object-cover" />
+                        ) : doc.user?.name ? (
+                          doc.user.name.charAt(0)
+                        ) : (
+                          'D'
+                        )}
                       </div>
                       <div className="flex-1 min-w-0">
                         <h3 className="font-bold text-slate-900 dark:text-white text-lg leading-tight break-words">

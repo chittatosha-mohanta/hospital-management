@@ -326,8 +326,14 @@ const DoctorsDirectory = () => {
                 <div>
                   {/* Doctor Info */}
                   <div className="flex items-start gap-4 mb-5">
-                    <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary-500 to-primary-600 text-white flex items-center justify-center font-bold text-2xl shadow-lg shadow-primary-500/20 shrink-0 mt-0.5">
-                      {doc.user?.name ? doc.user.name.charAt(0) : 'D'}
+                    <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary-500 to-primary-600 text-white flex items-center justify-center font-bold text-2xl shadow-lg shadow-primary-500/20 shrink-0 mt-0.5 overflow-hidden border border-primary-500/20">
+                      {doc.avatar || doc.image ? (
+                        <img src={doc.avatar || doc.image} alt={doc.user?.name || 'Doctor'} className="w-full h-full object-cover" />
+                      ) : doc.user?.name ? (
+                        doc.user.name.charAt(0)
+                      ) : (
+                        'D'
+                      )}
                     </div>
 
                     <div className="flex-1 min-w-0">

@@ -323,8 +323,14 @@ const HospitalDetail = () => {
                   >
                     <div>
                       <div className="flex items-start gap-4 mb-5">
-                        <div className="w-16 h-16 rounded-2xl bg-primary-50 dark:bg-primary-950/30 text-primary-500 flex items-center justify-center font-bold text-xl shrink-0 mt-0.5">
-                          {doc.user?.name ? doc.user.name.charAt(0) : <User className="w-7 h-7" />}
+                        <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary-500/10 to-primary-600/10 dark:bg-primary-950/30 text-primary-500 flex items-center justify-center font-bold text-xl shrink-0 mt-0.5 overflow-hidden border border-primary-500/20 shadow-md">
+                          {doc.avatar || doc.image ? (
+                            <img src={doc.avatar || doc.image} alt={doc.user?.name || 'Doctor'} className="w-full h-full object-cover" />
+                          ) : doc.user?.name ? (
+                            doc.user.name.charAt(0)
+                          ) : (
+                            <User className="w-7 h-7" />
+                          )}
                         </div>
                         <div className="flex-1 min-w-0">
                           <h3 className="text-lg font-black text-slate-900 dark:text-white leading-snug break-words">
