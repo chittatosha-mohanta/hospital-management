@@ -20,6 +20,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import api from '../../services/api';
 import { AuthContext } from '../../context/AuthContext';
 import { toast } from 'react-toastify';
+import { DEMO_DOCTORS, DEMO_CITIES, generateDemoSlots } from '../../services/mockData';
 
 const DoctorsDirectory = () => {
   const { user } = useContext(AuthContext);
@@ -52,10 +53,35 @@ const DoctorsDirectory = () => {
   const fetchCities = async () => {
     try {
       const { data } = await api.get('/hospitals/cities');
-      setCities(data);
-    } catch (err) {
-      console.error(err);
+      setCities(data && data.length > 0 ? data : DEMO_CITIES);
+    } catch {
+      setCities(DEMO_CITIES);
     }
+  };
+
+  const filterDemoDoctors = () => {
+    let list = [...DEMO_DOCTORS];
+    if (search) {
+      const q = search.toLowerCase();
+      list = list.filter(d => 
+        d.user?.name?.toLowerCase().includes(q) || 
+        d.specialization?.toLowerCase().includes(q) ||
+        d.hospital?.name?.toLowerCase().includes(q)
+      );
+    }
+    if (specialty) {
+      list = list.filter(d => d.specialization?.toLowerCase() === specialty.toLowerCase());
+    }
+    if (city) {
+      list = list.filter(d => d.hospital?.address?.city?.toLowerCase() === city.toLowerCase());
+    }
+    if (sort === 'fee_asc') list.sort((a, b) => a.consultationFee - b.consultationFee);
+    else if (sort === 'fee_desc') list.sort((a, b) => b.consultationFee - a.consultationFee);
+    else if (sort === 'experience') list.sort((a, b) => b.experience - a.experience);
+    else list.sort((a, b) => (b.rating || 5) - (a.rating || 5));
+
+    setDoctors(list);
+    setPagination({ page: 1, pages: 1, total: list.length });
   };
 
   const fetchDoctors = async () => {
@@ -63,7 +89,7 @@ const DoctorsDirectory = () => {
     try {
       const params = {
         page: pagination.page,
-        limit: 9,
+        limit: 12,
         sort,
       };
       if (search) params.search = search;
@@ -71,10 +97,14 @@ const DoctorsDirectory = () => {
       if (city) params.city = city;
 
       const { data } = await api.get('/doctors', { params });
-      setDoctors(data.doctors || []);
-      setPagination(data.pagination || { page: 1, pages: 1, total: 0 });
-    } catch (err) {
-      console.error('Error fetching doctors:', err);
+      if (data && data.doctors && data.doctors.length > 0) {
+        setDoctors(data.doctors);
+        setPagination(data.pagination || { page: 1, pages: 1, total: data.doctors.length });
+      } else {
+        filterDemoDoctors();
+      }
+    } catch {
+      filterDemoDoctors();
     } finally {
       setLoading(false);
     }
@@ -93,9 +123,9 @@ const DoctorsDirectory = () => {
       ...bookingData, 
       date: dateVal, 
       timeSlot: '', 
-      hospitalId: '', 
-      hospitalName: '', 
-      roomOrClinic: '' 
+      hospitalId: selectedDoctor?.hospital?._id || '', 
+      hospitalName: selectedDoctor?.hospital?.name || '', 
+      roomOrClinic: 'OPD Suite' 
     });
     if (!selectedDoctor || !dateVal) return;
 
@@ -103,10 +133,16 @@ const DoctorsDirectory = () => {
     try {
       const doctorUserId = selectedDoctor.user?._id || selectedDoctor._id;
       const { data } = await api.get(`/appointments/slots/${doctorUserId}/${dateVal}`);
-      setAvailableSlots(data.slots || []);
-      setDayShifts(data.shifts || []);
-    } catch (err) {
-      console.error('Error loading slots:', err);
+      if (data && data.slots && data.slots.length > 0) {
+        setAvailableSlots(data.slots);
+        setDayShifts(data.shifts || []);
+      } else {
+        setAvailableSlots(generateDemoSlots(dateVal));
+        setDayShifts([{ hospitalName: selectedDoctor?.hospital?.name || 'Main Hospital', roomOrClinic: 'OPD Room 1' }]);
+      }
+    } catch {
+      setAvailableSlots(generateDemoSlots(dateVal));
+      setDayShifts([{ hospitalName: selectedDoctor?.hospital?.name || 'Main Hospital', roomOrClinic: 'OPD Room 1' }]);
     } finally {
       setLoadingSlots(false);
     }

@@ -53,13 +53,14 @@ const MOCK_DEMO_USERS = {
     hospital: { _id: 'hosp_kokilaben', name: 'Kokilaben Dhirubhai Ambani Hospital', slug: 'kokilaben-hospital', status: 'approved' },
     token: 'demo_token_anil'
   },
+  // 🏥 Apollo Hospital (Chennai)
   'ananya@apollo.com': {
     _id: 'demo_doc_ananya',
     name: 'Dr. Ananya Verma',
     email: 'ananya@apollo.com',
     role: 'doctor',
     hospital: { _id: 'hosp_apollo', name: 'Apollo Multi-Specialty Hospital' },
-    doctorProfile: { specialization: 'Cardiology', qualification: 'MBBS, MD' },
+    doctorProfile: { specialization: 'Cardiology', qualification: 'MBBS, MD, DM, FACC' },
     token: 'demo_token_ananya'
   },
   'arjun@apollo.com': {
@@ -68,16 +69,54 @@ const MOCK_DEMO_USERS = {
     email: 'arjun@apollo.com',
     role: 'doctor',
     hospital: { _id: 'hosp_apollo', name: 'Apollo Multi-Specialty Hospital' },
-    doctorProfile: { specialization: 'Pediatrics', qualification: 'MBBS, MD' },
+    doctorProfile: { specialization: 'Pediatrics', qualification: 'MBBS, MD, DNB' },
     token: 'demo_token_arjun'
   },
+  'siddharth@apollo.com': {
+    _id: 'demo_doc_siddharth',
+    name: 'Dr. Siddharth Mukherjee',
+    email: 'siddharth@apollo.com',
+    role: 'doctor',
+    hospital: { _id: 'hosp_apollo', name: 'Apollo Multi-Specialty Hospital' },
+    doctorProfile: { specialization: 'Neurology', qualification: 'MBBS, MS, MCh' },
+    token: 'demo_token_siddharth'
+  },
+  'meera@apollo.com': {
+    _id: 'demo_doc_meera',
+    name: 'Dr. Meera Nambiar',
+    email: 'meera@apollo.com',
+    role: 'doctor',
+    hospital: { _id: 'hosp_apollo', name: 'Apollo Multi-Specialty Hospital' },
+    doctorProfile: { specialization: 'Orthopedics', qualification: 'MBBS, MS Ortho' },
+    token: 'demo_token_meera'
+  },
+  'rajeshvarma@apollo.com': {
+    _id: 'demo_doc_rajeshvarma',
+    name: 'Dr. Rajesh Varma',
+    email: 'rajeshvarma@apollo.com',
+    role: 'doctor',
+    hospital: { _id: 'hosp_apollo', name: 'Apollo Multi-Specialty Hospital' },
+    doctorProfile: { specialization: 'General Medicine', qualification: 'MBBS, MD' },
+    token: 'demo_token_rajeshvarma'
+  },
+  'swati@apollo.com': {
+    _id: 'demo_doc_swati',
+    name: 'Dr. Swati Deshmukh',
+    email: 'swati@apollo.com',
+    role: 'doctor',
+    hospital: { _id: 'hosp_apollo', name: 'Apollo Multi-Specialty Hospital' },
+    doctorProfile: { specialization: 'Dermatology', qualification: 'MBBS, MD' },
+    token: 'demo_token_swati'
+  },
+
+  // 🏥 Fortis Memorial (Gurugram)
   'rahul@fortis.com': {
     _id: 'demo_doc_rahul',
     name: 'Dr. Rahul Joshi',
     email: 'rahul@fortis.com',
     role: 'doctor',
     hospital: { _id: 'hosp_fortis', name: 'Fortis Memorial Research Institute' },
-    doctorProfile: { specialization: 'Cardiology', qualification: 'MBBS, MD' },
+    doctorProfile: { specialization: 'Cardiology', qualification: 'MBBS, MD, DM, FACC' },
     token: 'demo_token_rahul'
   },
   'sonia@fortis.com': {
@@ -86,16 +125,54 @@ const MOCK_DEMO_USERS = {
     email: 'sonia@fortis.com',
     role: 'doctor',
     hospital: { _id: 'hosp_fortis', name: 'Fortis Memorial Research Institute' },
-    doctorProfile: { specialization: 'Pediatrics', qualification: 'MBBS, MD' },
+    doctorProfile: { specialization: 'Pediatrics', qualification: 'MBBS, DCH, DNB' },
     token: 'demo_token_sonia'
   },
+  'vikram@fortis.com': {
+    _id: 'demo_doc_vikram',
+    name: 'Dr. Vikramaditya Singh',
+    email: 'vikram@fortis.com',
+    role: 'doctor',
+    hospital: { _id: 'hosp_fortis', name: 'Fortis Memorial Research Institute' },
+    doctorProfile: { specialization: 'Oncology', qualification: 'MBBS, MD, DM' },
+    token: 'demo_token_vikram'
+  },
+  'neha@fortis.com': {
+    _id: 'demo_doc_neha',
+    name: 'Dr. Neha Kapoor',
+    email: 'neha@fortis.com',
+    role: 'doctor',
+    hospital: { _id: 'hosp_fortis', name: 'Fortis Memorial Research Institute' },
+    doctorProfile: { specialization: 'Gynecology', qualification: 'MBBS, MS OBG' },
+    token: 'demo_token_neha'
+  },
+  'arvind@fortis.com': {
+    _id: 'demo_doc_arvind',
+    name: 'Dr. Arvind Kejriwal',
+    email: 'arvind@fortis.com',
+    role: 'doctor',
+    hospital: { _id: 'hosp_fortis', name: 'Fortis Memorial Research Institute' },
+    doctorProfile: { specialization: 'Gastroenterology', qualification: 'MBBS, MD, DM' },
+    token: 'demo_token_arvind'
+  },
+  'tanvi@fortis.com': {
+    _id: 'demo_doc_tanvi',
+    name: 'Dr. Tanvi Shah',
+    email: 'tanvi@fortis.com',
+    role: 'doctor',
+    hospital: { _id: 'hosp_fortis', name: 'Fortis Memorial Research Institute' },
+    doctorProfile: { specialization: 'ENT', qualification: 'MBBS, MS ENT' },
+    token: 'demo_token_tanvi'
+  },
+
+  // 🏥 Max Super Speciality (Delhi)
   'sanjaydutt@max.com': {
     _id: 'demo_doc_sanjaydutt',
     name: 'Dr. Sanjay Dutt',
     email: 'sanjaydutt@max.com',
     role: 'doctor',
     hospital: { _id: 'hosp_max', name: 'Max Super Speciality Hospital' },
-    doctorProfile: { specialization: 'Cardiology', qualification: 'MBBS, MD' },
+    doctorProfile: { specialization: 'Cardiology', qualification: 'MBBS, MS, MCh CTVS' },
     token: 'demo_token_sanjaydutt'
   },
   'karan@max.com': {
@@ -107,13 +184,51 @@ const MOCK_DEMO_USERS = {
     doctorProfile: { specialization: 'Pediatrics', qualification: 'MBBS, MD' },
     token: 'demo_token_karan'
   },
+  'alok@max.com': {
+    _id: 'demo_doc_alok',
+    name: 'Dr. Alok Nath',
+    email: 'alok@max.com',
+    role: 'doctor',
+    hospital: { _id: 'hosp_max', name: 'Max Super Speciality Hospital' },
+    doctorProfile: { specialization: 'Neurology', qualification: 'MBBS, MD, DM' },
+    token: 'demo_token_alok'
+  },
+  'pooja@max.com': {
+    _id: 'demo_doc_pooja',
+    name: 'Dr. Pooja Hegde',
+    email: 'pooja@max.com',
+    role: 'doctor',
+    hospital: { _id: 'hosp_max', name: 'Max Super Speciality Hospital' },
+    doctorProfile: { specialization: 'Dermatology', qualification: 'MBBS, MD' },
+    token: 'demo_token_pooja'
+  },
+  'rohit@max.com': {
+    _id: 'demo_doc_rohit',
+    name: 'Dr. Rohit Sharma',
+    email: 'rohit@max.com',
+    role: 'doctor',
+    hospital: { _id: 'hosp_max', name: 'Max Super Speciality Hospital' },
+    doctorProfile: { specialization: 'Orthopedics', qualification: 'MBBS, MS Ortho' },
+    token: 'demo_token_rohit'
+  },
+  'sunita@max.com': {
+    _id: 'demo_doc_sunita',
+    name: 'Dr. Sunita Rao',
+    email: 'sunita@max.com',
+    role: 'doctor',
+    hospital: { _id: 'hosp_max', name: 'Max Super Speciality Hospital' },
+    doctorProfile: { specialization: 'Endocrinology', qualification: 'MBBS, MD, DM' },
+    token: 'demo_token_sunita'
+  },
+
+  // 🏥 Manipal Hospital (Bengaluru)
   'chopra@manipal.com': {
     _id: 'demo_doc_chopra',
     name: 'Dr. Deepak Chopra',
     email: 'chopra@manipal.com',
     role: 'doctor',
     hospital: { _id: 'hosp_manipal', name: 'Manipal Hospital' },
-    doctorProfile: { specialization: 'Cardiology', qualification: 'MBBS, MD' },
+    doctorProfile: { specialization: 'Cardiology', qualification: 'MBBS, MD, DM' },
     token: 'demo_token_chopra'
   },
   'divya@manipal.com': {
@@ -125,13 +240,51 @@ const MOCK_DEMO_USERS = {
     doctorProfile: { specialization: 'Pediatrics', qualification: 'MBBS, MD' },
     token: 'demo_token_divya'
   },
+  'raghav@manipal.com': {
+    _id: 'demo_doc_raghav',
+    name: 'Dr. Raghavendra Rao',
+    email: 'raghav@manipal.com',
+    role: 'doctor',
+    hospital: { _id: 'hosp_manipal', name: 'Manipal Hospital' },
+    doctorProfile: { specialization: 'Nephrology', qualification: 'MBBS, MD, DM' },
+    token: 'demo_token_raghav'
+  },
+  'shalini@manipal.com': {
+    _id: 'demo_doc_shalini',
+    name: 'Dr. Shalini Sundaram',
+    email: 'shalini@manipal.com',
+    role: 'doctor',
+    hospital: { _id: 'hosp_manipal', name: 'Manipal Hospital' },
+    doctorProfile: { specialization: 'Gynecology', qualification: 'MBBS, DGO, DNB' },
+    token: 'demo_token_shalini'
+  },
+  'chetan@manipal.com': {
+    _id: 'demo_doc_chetan',
+    name: 'Dr. Chetan Bhagat',
+    email: 'chetan@manipal.com',
+    role: 'doctor',
+    hospital: { _id: 'hosp_manipal', name: 'Manipal Hospital' },
+    doctorProfile: { specialization: 'Psychiatry', qualification: 'MBBS, MD' },
+    token: 'demo_token_chetan'
+  },
+  'ananyapanday@manipal.com': {
+    _id: 'demo_doc_ananyapanday',
+    name: 'Dr. Ananya Panday',
+    email: 'ananyapanday@manipal.com',
+    role: 'doctor',
+    hospital: { _id: 'hosp_manipal', name: 'Manipal Hospital' },
+    doctorProfile: { specialization: 'General Surgery', qualification: 'MBBS, MS, FIAGES' },
+    token: 'demo_token_ananyapanday'
+  },
+
+  // 🏥 Kokilaben Hospital (Mumbai)
   'anilkapoor@kokilaben.com': {
     _id: 'demo_doc_anilkapoor',
     name: 'Dr. Anil Kapoor',
     email: 'anilkapoor@kokilaben.com',
     role: 'doctor',
     hospital: { _id: 'hosp_kokilaben', name: 'Kokilaben Dhirubhai Ambani Hospital' },
-    doctorProfile: { specialization: 'Cardiology', qualification: 'MBBS, MD' },
+    doctorProfile: { specialization: 'Cardiology', qualification: 'MBBS, MD, DM, FSCAI' },
     token: 'demo_token_anilkapoor'
   },
   'madhuri@kokilaben.com': {
@@ -142,6 +295,42 @@ const MOCK_DEMO_USERS = {
     hospital: { _id: 'hosp_kokilaben', name: 'Kokilaben Dhirubhai Ambani Hospital' },
     doctorProfile: { specialization: 'Pediatrics', qualification: 'MBBS, MD' },
     token: 'demo_token_madhuri'
+  },
+  'shahrukh@kokilaben.com': {
+    _id: 'demo_doc_shahrukh',
+    name: 'Dr. Shah Rukh Khan',
+    email: 'shahrukh@kokilaben.com',
+    role: 'doctor',
+    hospital: { _id: 'hosp_kokilaben', name: 'Kokilaben Dhirubhai Ambani Hospital' },
+    doctorProfile: { specialization: 'Neurology', qualification: 'MBBS, MS, MCh' },
+    token: 'demo_token_shahrukh'
+  },
+  'kareena@kokilaben.com': {
+    _id: 'demo_doc_kareena',
+    name: 'Dr. Kareena Kapoor',
+    email: 'kareena@kokilaben.com',
+    role: 'doctor',
+    hospital: { _id: 'hosp_kokilaben', name: 'Kokilaben Dhirubhai Ambani Hospital' },
+    doctorProfile: { specialization: 'Dermatology', qualification: 'MBBS, DVD, MD' },
+    token: 'demo_token_kareena'
+  },
+  'ranveer@kokilaben.com': {
+    _id: 'demo_doc_ranveer',
+    name: 'Dr. Ranveer Singh',
+    email: 'ranveer@kokilaben.com',
+    role: 'doctor',
+    hospital: { _id: 'hosp_kokilaben', name: 'Kokilaben Dhirubhai Ambani Hospital' },
+    doctorProfile: { specialization: 'Orthopedics', qualification: 'MBBS, MS Ortho' },
+    token: 'demo_token_ranveer'
+  },
+  'deepika@kokilaben.com': {
+    _id: 'demo_doc_deepika',
+    name: 'Dr. Deepika Padukone',
+    email: 'deepika@kokilaben.com',
+    role: 'doctor',
+    hospital: { _id: 'hosp_kokilaben', name: 'Kokilaben Dhirubhai Ambani Hospital' },
+    doctorProfile: { specialization: 'Ophthalmology', qualification: 'MBBS, MS' },
+    token: 'demo_token_deepika'
   }
 };
 

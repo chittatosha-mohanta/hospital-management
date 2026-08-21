@@ -125,19 +125,58 @@ Simply link the repository to your Vercel project and it will build and deploy t
 | Manipal Hospital | Bengaluru, KA | Deepak Chopra | `deepak@manipal.com` | `hospital123` |
 | Kokilaben Dhirubhai Ambani Hospital | Mumbai, MH | Anil Kapoor | `anil@kokilaben.com` | `hospital123` |
 
-### 🩺 Doctors (10 Doctors Across 5 Hospitals & Departments)
-| Doctor Name | Hospital | Department / Specialization | Email | Password |
+### 🩺 Doctors (30 Doctors Across All 5 Hospitals & Clinical Departments)
+*All doctor accounts have password: `doctor123`*
+
+#### 1. Apollo Multi-Specialty Hospital (Chennai, TN)
+| Doctor Name | Department / Specialization | Qualifications | Email | Password |
 |---|---|---|---|---|
-| Dr. Ananya Verma | Apollo Hospital | Cardiology | `ananya@apollo.com` | `doctor123` |
-| Dr. Arjun Reddy | Apollo Hospital | Pediatrics | `arjun@apollo.com` | `doctor123` |
-| Dr. Rahul Joshi | Fortis Memorial | Cardiology | `rahul@fortis.com` | `doctor123` |
-| Dr. Sonia Gupta | Fortis Memorial | Pediatrics | `sonia@fortis.com` | `doctor123` |
-| Dr. Sanjay Dutt | Max Hospital | Cardiology | `sanjaydutt@max.com` | `doctor123` |
-| Dr. Karan Johar | Max Hospital | Pediatrics | `karan@max.com` | `doctor123` |
-| Dr. Deepak Chopra | Manipal Hospital | Cardiology | `chopra@manipal.com` | `doctor123` |
-| Dr. Divya Spandana | Manipal Hospital | Pediatrics | `divya@manipal.com` | `doctor123` |
-| Dr. Anil Kapoor | Kokilaben Hospital | Cardiology | `anilkapoor@kokilaben.com` | `doctor123` |
-| Dr. Madhuri Dixit | Kokilaben Hospital | Pediatrics | `madhuri@kokilaben.com` | `doctor123` |
+| Dr. Ananya Verma | Cardiology | MBBS, MD, DM, FACC | `ananya@apollo.com` | `doctor123` |
+| Dr. Arjun Reddy | Pediatrics | MBBS, MD (Pediatrics), DNB | `arjun@apollo.com` | `doctor123` |
+| Dr. Siddharth Mukherjee | Neurology | MBBS, MS, MCh (Neurosurgery) | `siddharth@apollo.com` | `doctor123` |
+| Dr. Meera Nambiar | Orthopedics | MBBS, MS (Ortho), Joint Replacement | `meera@apollo.com` | `doctor123` |
+| Dr. Rajesh Varma | General Medicine | MBBS, MD (Internal Medicine) | `rajeshvarma@apollo.com` | `doctor123` |
+| Dr. Swati Deshmukh | Dermatology | MBBS, MD (Dermatology) | `swati@apollo.com` | `doctor123` |
+
+#### 2. Fortis Memorial Research Institute (Gurugram, HR)
+| Doctor Name | Department / Specialization | Qualifications | Email | Password |
+|---|---|---|---|---|
+| Dr. Rahul Joshi | Cardiology | MBBS, MD, DM, FACC | `rahul@fortis.com` | `doctor123` |
+| Dr. Sonia Gupta | Pediatrics | MBBS, DCH, DNB (Pediatrics) | `sonia@fortis.com` | `doctor123` |
+| Dr. Vikramaditya Singh | Oncology | MBBS, MD, DM (Medical Oncology) | `vikram@fortis.com` | `doctor123` |
+| Dr. Neha Kapoor | Gynecology & Obstetrics | MBBS, MS (OBG), Laparoscopic Surgeon | `neha@fortis.com` | `doctor123` |
+| Dr. Arvind Kejriwal | Gastroenterology | MBBS, MD, DM (Gastroenterology) | `arvind@fortis.com` | `doctor123` |
+| Dr. Tanvi Shah | ENT | MBBS, MS (ENT) | `tanvi@fortis.com` | `doctor123` |
+
+#### 3. Max Super Speciality Hospital (Delhi)
+| Doctor Name | Department / Specialization | Qualifications | Email | Password |
+|---|---|---|---|---|
+| Dr. Sanjay Dutt | Cardiology | MBBS, MS, MCh CTVS | `sanjaydutt@max.com` | `doctor123` |
+| Dr. Karan Johar | Pediatrics | MBBS, MD (Pediatrics), PICU | `karan@max.com` | `doctor123` |
+| Dr. Alok Nath | Neurology | MBBS, MD, DM (Neurology) | `alok@max.com` | `doctor123` |
+| Dr. Pooja Hegde | Dermatology | MBBS, MD, Aesthetic Medicine | `pooja@max.com` | `doctor123` |
+| Dr. Rohit Sharma | Orthopedics | MBBS, MS (Ortho), Sports Medicine | `rohit@max.com` | `doctor123` |
+| Dr. Sunita Rao | Endocrinology | MBBS, MD, DM (Endocrinology) | `sunita@max.com` | `doctor123` |
+
+#### 4. Manipal Hospital (Bengaluru, KA)
+| Doctor Name | Department / Specialization | Qualifications | Email | Password |
+|---|---|---|---|---|
+| Dr. Deepak Chopra | Cardiology | MBBS, MD, DM (Cardiology) | `chopra@manipal.com` | `doctor123` |
+| Dr. Divya Spandana | Pediatrics | MBBS, MD (Pediatrics), Pulmonology | `divya@manipal.com` | `doctor123` |
+| Dr. Raghavendra Rao | Nephrology | MBBS, MD, DM (Nephrology), Transplants | `raghav@manipal.com` | `doctor123` |
+| Dr. Shalini Sundaram | Gynecology & IVF | MBBS, DGO, DNB, IVF Specialist | `shalini@manipal.com` | `doctor123` |
+| Dr. Chetan Bhagat | Psychiatry | MBBS, MD (Psychiatry) | `chetan@manipal.com` | `doctor123` |
+| Dr. Ananya Panday | General Surgery | MBBS, MS (Gen Surgery), FIAGES | `ananyapanday@manipal.com` | `doctor123` |
+
+#### 5. Kokilaben Dhirubhai Ambani Hospital (Mumbai, MH)
+| Doctor Name | Department / Specialization | Qualifications | Email | Password |
+|---|---|---|---|---|
+| Dr. Anil Kapoor | Cardiology | MBBS, MD, DM, FSCAI | `anilkapoor@kokilaben.com` | `doctor123` |
+| Dr. Madhuri Dixit | Pediatrics | MBBS, MD (Pediatrics), Developmental | `madhuri@kokilaben.com` | `doctor123` |
+| Dr. Shah Rukh Khan | Neurology & Spine | MBBS, MS, MCh (Neurosurgery) | `shahrukh@kokilaben.com` | `doctor123` |
+| Dr. Kareena Kapoor | Dermatology | MBBS, DVD, MD (Dermatology) | `kareena@kokilaben.com` | `doctor123` |
+| Dr. Ranveer Singh | Orthopedics | MBBS, MS (Orthopedics) | `ranveer@kokilaben.com` | `doctor123` |
+| Dr. Deepika Padukone | Ophthalmology | MBBS, MS (Ophthalmology), LASIK | `deepika@kokilaben.com` | `doctor123` |
 
 ### 👤 Patients (20 Patient Accounts)
 *All patient accounts have password: `patient123`*
@@ -145,14 +184,15 @@ Simply link the repository to your Vercel project and it will build and deploy t
 |---|---|---|---|---|---|
 | Patient User 1 | `patient1@gmail.com` | `+91 9800000001` | Male | O+ | Dr. Ananya Verma (Cardiology) |
 | Patient User 2 | `patient2@gmail.com` | `+91 9800000002` | Female | O+ | Dr. Arjun Reddy (Pediatrics) |
-| Patient User 3 | `patient3@gmail.com` | `+91 9800000003` | Male | O+ | Dr. Rahul Joshi (Cardiology) |
-| Patient User 4 | `patient4@gmail.com` | `+91 9800000004` | Female | O+ | Dr. Sonia Gupta (Pediatrics) |
-| Patient User 5 | `patient5@gmail.com` | `+91 9800000005` | Male | O+ | Dr. Sanjay Dutt (Cardiology) |
-| Patient User 6 | `patient6@gmail.com` | `+91 9800000006` | Female | O+ | Dr. Karan Johar (Pediatrics) |
-| Patient User 7 | `patient7@gmail.com` | `+91 9800000007` | Male | O+ | Dr. Deepak Chopra (Cardiology) |
-| Patient User 8 | `patient8@gmail.com` | `+91 9800000008` | Female | O+ | Dr. Divya Spandana (Pediatrics) |
-| Patient User 9 | `patient9@gmail.com` | `+91 9800000009` | Male | O+ | Dr. Anil Kapoor (Cardiology) |
-| Patient User 10 | `patient10@gmail.com` | `+91 9800000010` | Female | O+ | Dr. Madhuri Dixit (Pediatrics) |
+| Patient User 3 | `patient3@gmail.com` | `+91 9800000003` | Male | O+ | Dr. Siddharth Mukherjee (Neurology) |
+| Patient User 4 | `patient4@gmail.com` | `+91 9800000004` | Female | O+ | Dr. Meera Nambiar (Orthopedics) |
+| Patient User 5 | `patient5@gmail.com` | `+91 9800000005` | Male | O+ | Dr. Rajesh Varma (General Medicine) |
+| Patient User 6 | `patient6@gmail.com` | `+91 9800000006` | Female | O+ | Dr. Swati Deshmukh (Dermatology) |
+| Patient User 7 | `patient7@gmail.com` | `+91 9800000007` | Male | O+ | Dr. Rahul Joshi (Cardiology) |
+| Patient User 8 | `patient8@gmail.com` | `+91 9800000008` | Female | O+ | Dr. Sonia Gupta (Pediatrics) |
+| Patient User 9 | `patient9@gmail.com` | `+91 9800000009` | Male | O+ | Dr. Vikramaditya Singh (Oncology) |
+| Patient User 10 | `patient10@gmail.com` | `+91 9800000010` | Female | O+ | Dr. Neha Kapoor (Gynecology) |
 | Patient User 11 to 20 | `patient11@gmail.com` to `patient20@gmail.com` | `+91 9800000011` ... | Alternating | O+ | Available for live bookings |
+
 
 
