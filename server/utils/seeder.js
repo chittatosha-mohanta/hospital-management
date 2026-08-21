@@ -141,39 +141,68 @@ const seed = async () => {
       await admins[i].save();
     }
 
-    // 4. Create Departments (Cardiology & Pediatrics for each hospital)
-    const departments = [];
-    for (const hosp of hospitals) {
-      const cardio = await Department.create({
-        hospital: hosp._id,
-        name: 'Cardiology',
-        description: 'Advanced Cardiology and Cardiovascular Care.'
-      });
-      const pedia = await Department.create({
-        hospital: hosp._id,
-        name: 'Pediatrics',
-        description: 'General and Intensive Pediatric clinical care.'
-      });
-      departments.push(cardio, pedia);
-    }
-    console.log('✅ 10 Departments created (Cardiology & Pediatrics for each hospital)');
+    // 4. Create Departments (6 Departments for each of the 5 hospitals = 30 Departments)
+    const departmentsMap = [
+      { name: 'Cardiology', description: 'Advanced Interventional & Preventive Cardiovascular Medicine.' },
+      { name: 'Pediatrics', description: 'Comprehensive Pediatric, Neonatal & Adolescent Care.' },
+      { name: 'Neurology', description: 'Neurosurgery, Stroke Management & Neuro-Oncology.' },
+      { name: 'Orthopedics', description: 'Robotic Joint Replacement, Arthroscopy & Trauma Care.' },
+      { name: 'Dermatology', description: 'Clinical, Laser & Aesthetic Dermatology.' },
+      { name: 'Gynecology', description: 'High Risk Obstetrics, Reproductive Medicine & Laparoscopy.' }
+    ];
 
-    // 5. Create 10 Doctors (1 for Cardiology, 1 for Pediatrics at each hospital)
+    for (const hosp of hospitals) {
+      for (const dept of departmentsMap) {
+        await Department.create({
+          hospital: hosp._id,
+          name: dept.name,
+          description: dept.description
+        });
+      }
+    }
+    console.log('✅ 30 Departments created (6 departments for each hospital)');
+
+    // 5. Create 30 Doctors (6 Doctors for each hospital)
     const doctorData = [
-      { name: 'Dr. Ananya Verma', email: 'ananya@apollo.com', specialization: 'Cardiology', fee: 1200 },
-      { name: 'Dr. Arjun Reddy', email: 'arjun@apollo.com', specialization: 'Pediatrics', fee: 800 },
+      // Apollo (Chennai)
+      { name: 'Dr. Ananya Verma', email: 'ananya@apollo.com', specialization: 'Cardiology', fee: 1200, qualification: 'MBBS, MD, DM (Cardiology), FACC', exp: 14, hospIdx: 0 },
+      { name: 'Dr. Arjun Reddy', email: 'arjun@apollo.com', specialization: 'Pediatrics', fee: 800, qualification: 'MBBS, MD (Pediatrics), DNB', exp: 10, hospIdx: 0 },
+      { name: 'Dr. Siddharth Mukherjee', email: 'siddharth@apollo.com', specialization: 'Neurology', fee: 1500, qualification: 'MBBS, MS, MCh (Neurosurgery)', exp: 16, hospIdx: 0 },
+      { name: 'Dr. Meera Nambiar', email: 'meera@apollo.com', specialization: 'Orthopedics', fee: 1100, qualification: 'MBBS, MS (Orthopedics), Joint Replacement Fellow', exp: 12, hospIdx: 0 },
+      { name: 'Dr. Rajesh Varma', email: 'rajeshvarma@apollo.com', specialization: 'General Medicine', fee: 700, qualification: 'MBBS, MD (Internal Medicine)', exp: 15, hospIdx: 0 },
+      { name: 'Dr. Swati Deshmukh', email: 'swati@apollo.com', specialization: 'Dermatology', fee: 900, qualification: 'MBBS, MD (Dermatology)', exp: 8, hospIdx: 0 },
       
-      { name: 'Dr. Rahul Joshi', email: 'rahul@fortis.com', specialization: 'Cardiology', fee: 1500 },
-      { name: 'Dr. Sonia Gupta', email: 'sonia@fortis.com', specialization: 'Pediatrics', fee: 900 },
-      
-      { name: 'Dr. Sanjay Dutt', email: 'sanjaydutt@max.com', specialization: 'Cardiology', fee: 1300 },
-      { name: 'Dr. Karan Johar', email: 'karan@max.com', specialization: 'Pediatrics', fee: 1000 },
-      
-      { name: 'Dr. Deepak Chopra', email: 'chopra@manipal.com', specialization: 'Cardiology', fee: 1400 },
-      { name: 'Dr. Divya Spandana', email: 'divya@manipal.com', specialization: 'Pediatrics', fee: 950 },
-      
-      { name: 'Dr. Anil Kapoor', email: 'anilkapoor@kokilaben.com', specialization: 'Cardiology', fee: 1600 },
-      { name: 'Dr. Madhuri Dixit', email: 'madhuri@kokilaben.com', specialization: 'Pediatrics', fee: 1100 }
+      // Fortis (Gurugram)
+      { name: 'Dr. Rahul Joshi', email: 'rahul@fortis.com', specialization: 'Cardiology', fee: 1500, qualification: 'MBBS, MD, DM (Cardiology), FACC', exp: 18, hospIdx: 1 },
+      { name: 'Dr. Sonia Gupta', email: 'sonia@fortis.com', specialization: 'Pediatrics', fee: 900, qualification: 'MBBS, DCH, DNB (Pediatrics)', exp: 11, hospIdx: 1 },
+      { name: 'Dr. Vikramaditya Singh', email: 'vikram@fortis.com', specialization: 'Oncology', fee: 1800, qualification: 'MBBS, MD, DM (Medical Oncology)', exp: 15, hospIdx: 1 },
+      { name: 'Dr. Neha Kapoor', email: 'neha@fortis.com', specialization: 'Gynecology', fee: 1200, qualification: 'MBBS, MS (OBG), Laparoscopic Surgeon', exp: 13, hospIdx: 1 },
+      { name: 'Dr. Arvind Kejriwal', email: 'arvind@fortis.com', specialization: 'Gastroenterology', fee: 1400, qualification: 'MBBS, MD, DM (Gastroenterology)', exp: 14, hospIdx: 1 },
+      { name: 'Dr. Tanvi Shah', email: 'tanvi@fortis.com', specialization: 'ENT', fee: 850, qualification: 'MBBS, MS (ENT - Otorhinolaryngology)', exp: 9, hospIdx: 1 },
+
+      // Max (Delhi)
+      { name: 'Dr. Sanjay Dutt', email: 'sanjaydutt@max.com', specialization: 'Cardiology', fee: 1300, qualification: 'MBBS, MS, MCh (CTVS), Chief Cardiac Surgeon', exp: 20, hospIdx: 2 },
+      { name: 'Dr. Karan Johar', email: 'karan@max.com', specialization: 'Pediatrics', fee: 1000, qualification: 'MBBS, MD (Pediatrics), PICU Specialist', exp: 12, hospIdx: 2 },
+      { name: 'Dr. Alok Nath', email: 'alok@max.com', specialization: 'Neurology', fee: 1600, qualification: 'MBBS, MD, DM (Neurology)', exp: 17, hospIdx: 2 },
+      { name: 'Dr. Pooja Hegde', email: 'pooja@max.com', specialization: 'Dermatology', fee: 950, qualification: 'MBBS, MD (Dermatology), Aesthetic Specialist', exp: 10, hospIdx: 2 },
+      { name: 'Dr. Rohit Sharma', email: 'rohit@max.com', specialization: 'Orthopedics', fee: 1250, qualification: 'MBBS, MS (Ortho), Sports Medicine Fellow', exp: 14, hospIdx: 2 },
+      { name: 'Dr. Sunita Rao', email: 'sunita@max.com', specialization: 'Endocrinology', fee: 1150, qualification: 'MBBS, MD, DM (Endocrinology)', exp: 11, hospIdx: 2 },
+
+      // Manipal (Bengaluru)
+      { name: 'Dr. Deepak Chopra', email: 'chopra@manipal.com', specialization: 'Cardiology', fee: 1400, qualification: 'MBBS, MD, DM (Cardiology)', exp: 16, hospIdx: 3 },
+      { name: 'Dr. Divya Spandana', email: 'divya@manipal.com', specialization: 'Pediatrics', fee: 950, qualification: 'MBBS, MD (Pediatrics), Pulmonology Specialist', exp: 10, hospIdx: 3 },
+      { name: 'Dr. Raghavendra Rao', email: 'raghav@manipal.com', specialization: 'Nephrology', fee: 1700, qualification: 'MBBS, MD, DM (Nephrology), Renal Transplant Lead', exp: 18, hospIdx: 3 },
+      { name: 'Dr. Shalini Sundaram', email: 'shalini@manipal.com', specialization: 'Gynecology', fee: 1300, qualification: 'MBBS, DGO, DNB, IVF & Infertility Specialist', exp: 13, hospIdx: 3 },
+      { name: 'Dr. Chetan Bhagat', email: 'chetan@manipal.com', specialization: 'Psychiatry', fee: 1100, qualification: 'MBBS, MD (Psychiatry)', exp: 12, hospIdx: 3 },
+      { name: 'Dr. Ananya Panday', email: 'ananyapanday@manipal.com', specialization: 'General Surgery', fee: 1050, qualification: 'MBBS, MS (Gen Surgery), FIAGES', exp: 9, hospIdx: 3 },
+
+      // Kokilaben (Mumbai)
+      { name: 'Dr. Anil Kapoor', email: 'anilkapoor@kokilaben.com', specialization: 'Cardiology', fee: 1600, qualification: 'MBBS, MD, DM (Cardiology), FSCAI', exp: 22, hospIdx: 4 },
+      { name: 'Dr. Madhuri Dixit', email: 'madhuri@kokilaben.com', specialization: 'Pediatrics', fee: 1100, qualification: 'MBBS, MD (Pediatrics), Developmental Specialist', exp: 15, hospIdx: 4 },
+      { name: 'Dr. Shah Rukh Khan', email: 'shahrukh@kokilaben.com', specialization: 'Neurology', fee: 2000, qualification: 'MBBS, MS, MCh (Neurosurgery), Spine Specialist', exp: 19, hospIdx: 4 },
+      { name: 'Dr. Kareena Kapoor', email: 'kareena@kokilaben.com', specialization: 'Dermatology', fee: 1200, qualification: 'MBBS, DVD, MD (Dermatology)', exp: 11, hospIdx: 4 },
+      { name: 'Dr. Ranveer Singh', email: 'ranveer@kokilaben.com', specialization: 'Orthopedics', fee: 1350, qualification: 'MBBS, MS (Orthopedics), Joint Reconstruction', exp: 13, hospIdx: 4 },
+      { name: 'Dr. Deepika Padukone', email: 'deepika@kokilaben.com', specialization: 'Ophthalmology', fee: 1000, qualification: 'MBBS, MS (Ophthalmology), LASIK & Cornea Fellow', exp: 12, hospIdx: 4 }
     ];
 
     const defaultSchedule = [
@@ -189,7 +218,7 @@ const seed = async () => {
     const doctors = [];
     for (let i = 0; i < doctorData.length; i++) {
       const doc = doctorData[i];
-      const hosp = hospitals[Math.floor(i / 2)];
+      const hosp = hospitals[doc.hospIdx];
       const user = await User.create({
         name: doc.name,
         email: doc.email,
@@ -203,8 +232,8 @@ const seed = async () => {
         user: user._id,
         hospital: hosp._id,
         specialization: doc.specialization,
-        qualification: 'MBBS, MD',
-        experience: 8 + Math.floor(Math.random() * 12),
+        qualification: doc.qualification,
+        experience: doc.exp,
         consultationFee: doc.fee,
         bio: `Specialist in ${doc.specialization} at ${hosp.name}.`,
         languages: ['English', 'Hindi'],
@@ -215,11 +244,11 @@ const seed = async () => {
 
       doctors.push(user);
     }
-    console.log('✅ 10 Doctors created (Password: doctor123)');
+    console.log('✅ 30 Doctors created across all 5 hospitals (Password: doctor123)');
 
     // Set doctors counts on hospitals
     for (const h of hospitals) {
-      h.totalDoctors = 2;
+      h.totalDoctors = 6;
       await h.save();
     }
 
@@ -239,14 +268,13 @@ const seed = async () => {
     }
     console.log('✅ 20 Patients created (Password: patient123)');
 
-    // 7. Book 10 Appointments linking Patients 1-10 with Doctors 1-10
-    // Every doctor/department will have at least 1 booked patient appointment
+    // 7. Book Appointments linking Patients with Doctors
     const appointmentDate = new Date();
-    appointmentDate.setDate(appointmentDate.getDate() + 5); // 5 days from now
+    appointmentDate.setDate(appointmentDate.getDate() + 5);
 
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 20; i++) {
       const doc = doctors[i];
-      const hosp = hospitals[Math.floor(i / 2)];
+      const hosp = hospitals[Math.floor(i / 6)];
       const pat = patients[i];
 
       await Appointment.create({
@@ -254,16 +282,16 @@ const seed = async () => {
         doctor: doc._id,
         hospital: hosp._id,
         hospitalName: hosp.name,
-        roomOrClinic: 'Main OPD clinic room ' + (i + 1),
+        roomOrClinic: 'OPD Consultation Room ' + ((i % 6) + 1),
         date: appointmentDate,
         timeSlot: '10:00 AM',
-        reason: 'Regular clinical checkup and consultation.',
+        reason: 'Regular clinical checkup and specialized consultation.',
         status: 'confirmed',
         consultationFee: doctorData[i].fee,
         isPaid: true
       });
     }
-    console.log('✅ 10 Appointments created (linking every department to at least one patient)');
+    console.log('✅ 20 Appointments created (linking patients to doctors in all hospitals)');
 
     console.log('\n🎉 Seeding complete! Database is ready.');
     process.exit(0);

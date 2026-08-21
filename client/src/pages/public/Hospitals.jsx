@@ -20,6 +20,7 @@ import {
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import api from '../../services/api';
+import { DEMO_HOSPITALS, DEMO_CITIES } from '../../services/mockData';
 
 const Hospitals = () => {
   const [hospitals, setHospitals] = useState([]);
@@ -33,10 +34,30 @@ const Hospitals = () => {
   const fetchCities = async () => {
     try {
       const { data } = await api.get('/hospitals/cities');
-      setCities(data);
-    } catch (err) {
-      console.error('Error fetching cities:', err);
+      setCities(data && data.length > 0 ? data : DEMO_CITIES);
+    } catch {
+      setCities(DEMO_CITIES);
     }
+  };
+
+  const filterDemoHospitals = () => {
+    let list = [...DEMO_HOSPITALS];
+    if (search) {
+      const q = search.toLowerCase();
+      list = list.filter(h => 
+        h.name.toLowerCase().includes(q) || 
+        h.description.toLowerCase().includes(q) ||
+        h.address?.city?.toLowerCase().includes(q)
+      );
+    }
+    if (city) {
+      list = list.filter(h => h.address?.city?.toLowerCase() === city.toLowerCase());
+    }
+    if (specialty && specialty !== 'All Specialties') {
+      list = list.filter(h => h.specialties?.some(s => s.toLowerCase() === specialty.toLowerCase()));
+    }
+    setHospitals(list);
+    setPagination({ page: 1, pages: 1, total: list.length });
   };
 
   const fetchHospitals = async () => {
@@ -48,13 +69,17 @@ const Hospitals = () => {
       };
       if (search) params.search = search;
       if (city) params.city = city;
-      if (specialty) params.specialty = specialty;
+      if (specialty && specialty !== 'All Specialties') params.specialty = specialty;
 
       const { data } = await api.get('/hospitals', { params });
-      setHospitals(data.hospitals || []);
-      setPagination(data.pagination || { page: 1, pages: 1, total: 0 });
-    } catch (error) {
-      console.error('Error fetching hospitals:', error);
+      if (data && data.hospitals && data.hospitals.length > 0) {
+        setHospitals(data.hospitals);
+        setPagination(data.pagination || { page: 1, pages: 1, total: data.hospitals.length });
+      } else {
+        filterDemoHospitals();
+      }
+    } catch {
+      filterDemoHospitals();
     } finally {
       setLoading(false);
     }
