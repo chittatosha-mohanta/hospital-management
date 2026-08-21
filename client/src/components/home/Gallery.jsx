@@ -96,8 +96,6 @@ const Gallery = () => {
 
       {/* Interactive Zoom Parallax */}
       <ZoomParallax images={galleryImages} />
-
-      <div className="h-24 bg-gradient-to-t from-slate-950 to-transparent" />
     </section>
   );
 };
