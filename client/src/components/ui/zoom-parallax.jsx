@@ -10,28 +10,31 @@ export function ZoomParallax({ images }) {
     offset: ['start start', 'end end'],
   });
 
-  // Scale center image so it completely fills the full screen edge-to-edge
-  const centerScale = useTransform(scrollYProgress, [0, 1], [1, 5.5]);
-  const scale5 = useTransform(scrollYProgress, [0, 1], [1, 5]);
-  const scale6 = useTransform(scrollYProgress, [0, 1], [1, 6]);
-  const scale8 = useTransform(scrollYProgress, [0, 1], [1, 8]);
-  const scale9 = useTransform(scrollYProgress, [0, 1], [1, 9]);
+  // Scales for zoom effect
+  const centerScale = useTransform(scrollYProgress, [0, 0.85], [1, 3.8]);
+  const scale5 = useTransform(scrollYProgress, [0, 0.85], [1, 4.5]);
+  const scale6 = useTransform(scrollYProgress, [0, 0.85], [1, 5.5]);
+  const scale8 = useTransform(scrollYProgress, [0, 0.85], [1, 7]);
+  const scale9 = useTransform(scrollYProgress, [0, 0.85], [1, 8]);
 
   const scales = [centerScale, scale5, scale6, scale5, scale6, scale8, scale9];
 
-  // Surrounding images fade out completely as center zooms in
-  const outerOpacity = useTransform(scrollYProgress, [0, 0.4, 0.7], [1, 0.5, 0]);
+  // Surrounding images fade out smoothly as center zooms in
+  const outerOpacity = useTransform(scrollYProgress, [0, 0.35, 0.65], [1, 0.4, 0]);
 
-  // Hide the small title inside the center image as it scales up to avoid clash
-  const centerCardLabelOpacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
+  // Hide the center card's small badge as it scales up
+  const centerCardBadgeOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
 
-  // Full-screen hero overlay card reveals at the end of the zoom
-  const centerHeroOpacity = useTransform(scrollYProgress, [0.75, 0.95], [0, 1]);
-  const centerHeroY = useTransform(scrollYProgress, [0.75, 0.95], [25, 0]);
+  // Full-screen overlay content reveals at the end of the zoom
+  const heroContentOpacity = useTransform(scrollYProgress, [0.55, 0.85], [0, 1]);
+  const heroContentY = useTransform(scrollYProgress, [0.55, 0.85], [30, 0]);
 
   return (
-    <div ref={container} className="relative h-[220vh]">
+    <div ref={container} className="relative h-[150vh] w-full">
       <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center bg-slate-950">
+        {/* Background ambient lighting */}
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 pointer-events-none -z-10" />
+
         {images.map(({ src, alt, title, subtitle }, index) => {
           const isCenter = index === 0;
           const scale = scales[index % scales.length];
@@ -46,34 +49,34 @@ export function ZoomParallax({ images }) {
               }}
               className={`absolute inset-0 flex h-full w-full items-center justify-center pointer-events-none ${
                 index === 1
-                  ? '[&>div]:!-top-[28vh] [&>div]:!left-[5vw] [&>div]:!h-[26vh] [&>div]:!w-[32vw]'
+                  ? '[&>div]:!-top-[26vh] [&>div]:!left-[5vw] [&>div]:!h-[24vh] [&>div]:!w-[30vw]'
                   : ''
               } ${
                 index === 2
-                  ? '[&>div]:!-top-[10vh] [&>div]:!-left-[26vw] [&>div]:!h-[40vh] [&>div]:!w-[22vw]'
+                  ? '[&>div]:!-top-[10vh] [&>div]:!-left-[25vw] [&>div]:!h-[36vh] [&>div]:!w-[22vw]'
                   : ''
               } ${
                 index === 3
-                  ? '[&>div]:!left-[28vw] [&>div]:!h-[26vh] [&>div]:!w-[24vw]'
+                  ? '[&>div]:!left-[26vw] [&>div]:!h-[25vh] [&>div]:!w-[22vw]'
                   : ''
               } ${
                 index === 4
-                  ? '[&>div]:!top-[28vh] [&>div]:!left-[6vw] [&>div]:!h-[24vh] [&>div]:!w-[22vw]'
+                  ? '[&>div]:!top-[26vh] [&>div]:!left-[6vw] [&>div]:!h-[22vh] [&>div]:!w-[20vw]'
                   : ''
               } ${
                 index === 5
-                  ? '[&>div]:!top-[28vh] [&>div]:!-left-[24vw] [&>div]:!h-[24vh] [&>div]:!w-[28vw]'
+                  ? '[&>div]:!top-[26vh] [&>div]:!-left-[24vw] [&>div]:!h-[22vh] [&>div]:!w-[26vw]'
                   : ''
               } ${
                 index === 6
-                  ? '[&>div]:!top-[24vh] [&>div]:!left-[26vw] [&>div]:!h-[18vh] [&>div]:!w-[18vw]'
+                  ? '[&>div]:!top-[22vh] [&>div]:!left-[25vw] [&>div]:!h-[16vh] [&>div]:!w-[16vw]'
                   : ''
               }`}
             >
               <div
                 className={`relative ${
-                  isCenter ? 'h-[28vh] w-[32vw]' : 'h-[24vh] w-[25vw]'
-                } rounded-3xl overflow-hidden shadow-2xl border border-white/20 dark:border-slate-700/60 group pointer-events-auto`}
+                  isCenter ? 'h-[32vh] w-[36vw]' : 'h-[22vh] w-[24vw]'
+                } rounded-3xl overflow-hidden shadow-2xl border border-white/20 dark:border-slate-700/60 pointer-events-auto`}
               >
                 <img
                   src={src || '/placeholder.svg'}
@@ -81,15 +84,14 @@ export function ZoomParallax({ images }) {
                   className="h-full w-full object-cover"
                 />
                 
-                {/* Subtle vignette */}
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent pointer-events-none"></div>
                 
                 {title && (
                   <motion.div
-                    style={{ opacity: isCenter ? centerCardLabelOpacity : 1 }}
+                    style={{ opacity: isCenter ? centerCardBadgeOpacity : 1 }}
                     className="absolute bottom-3 left-4 right-4 text-left pointer-events-none"
                   >
-                    <p className="text-white font-bold text-xs sm:text-sm drop-shadow-md truncate">
+                    <p className="text-white font-bold text-xs sm:text-sm drop-shadow truncate">
                       {title}
                     </p>
                     {subtitle && (
@@ -104,9 +106,9 @@ export function ZoomParallax({ images }) {
           );
         })}
 
-        {/* Dynamic Zoomed-In Overlay Info Card */}
+        {/* Dynamic Zoomed-In Content Card */}
         <motion.div
-          style={{ opacity: centerHeroOpacity, y: centerHeroY }}
+          style={{ opacity: heroContentOpacity, y: heroContentY }}
           className="absolute bottom-10 z-30 max-w-xl mx-auto px-6 text-center pointer-events-auto"
         >
           <div className="p-6 sm:p-7 glass rounded-[2.5rem] border border-white/20 shadow-2xl backdrop-blur-2xl bg-slate-950/85">
@@ -122,13 +124,13 @@ export function ZoomParallax({ images }) {
             <div className="flex items-center justify-center gap-3">
               <Link
                 to="/hospitals"
-                className="px-6 py-3 bg-primary-500 hover:bg-primary-600 text-white rounded-2xl font-bold text-xs sm:text-sm shadow-lg shadow-primary-500/30 transition-all flex items-center gap-2"
+                className="px-6 py-3 bg-primary-500 hover:bg-primary-600 text-white rounded-2xl font-bold text-xs sm:text-sm shadow-lg shadow-primary-500/30 transition-all flex items-center gap-2 hover:scale-105"
               >
                 Explore Hospitals <ArrowRight className="w-4 h-4" />
               </Link>
               <Link
                 to="/doctors"
-                className="px-6 py-3 bg-white/10 hover:bg-white/20 text-white rounded-2xl font-bold text-xs sm:text-sm transition-all border border-white/10"
+                className="px-6 py-3 bg-white/10 hover:bg-white/20 text-white rounded-2xl font-bold text-xs sm:text-sm transition-all border border-white/10 hover:scale-105"
               >
                 Find Doctors
               </Link>
