@@ -1,12 +1,12 @@
 import { motion } from 'framer-motion';
-import { Star, User, Calendar, ArrowRight } from 'lucide-react';
+import { Star, Calendar, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const doctors = [
-  { name: 'Dr. Sarah Johnson', specialty: 'Cardiologist', exp: '12 Years', rating: 4.9, reviews: 120 },
-  { name: 'Dr. Michael Chen', specialty: 'Neurologist', exp: '10 Years', rating: 4.8, reviews: 98 },
-  { name: 'Dr. Emily Davis', specialty: 'Pediatrician', exp: '8 Years', rating: 4.9, reviews: 156 },
-  { name: 'Dr. James Wilson', specialty: 'Orthopedic', exp: '15 Years', rating: 4.7, reviews: 84 },
+  { name: 'Dr. Ananya Verma', specialty: 'Cardiologist', hospital: 'Apollo Hospital', image: '/images/doctors/doc_female_1.jpg', exp: '14 Years', rating: 4.9, reviews: 148 },
+  { name: 'Dr. Arjun Reddy', specialty: 'Pediatrician', hospital: 'Apollo Hospital', image: '/images/doctors/doc_male_1.jpg', exp: '10 Years', rating: 4.8, reviews: 136 },
+  { name: 'Dr. Sonia Gupta', specialty: 'Pediatrician', hospital: 'Fortis Memorial', image: '/images/doctors/doc_female_2.jpg', exp: '11 Years', rating: 4.9, reviews: 140 },
+  { name: 'Dr. Rahul Joshi', specialty: 'Cardiologist', hospital: 'Fortis Memorial', image: '/images/doctors/doc_male_2.jpg', exp: '18 Years', rating: 5.0, reviews: 162 },
 ];
 
 const TopDoctors = () => {
@@ -30,7 +30,7 @@ const TopDoctors = () => {
               Top Rated Doctors
             </motion.h2>
           </div>
-          <Link to="/login" className="px-8 py-3 bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white rounded-2xl font-bold flex items-center gap-2 hover:bg-primary-500 hover:text-white transition-all shadow-lg">
+          <Link to="/doctors" className="px-8 py-3 bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white rounded-2xl font-bold flex items-center gap-2 hover:bg-primary-500 hover:text-white transition-all shadow-lg">
             View All Doctors <ArrowRight className="w-5 h-5" />
           </Link>
         </div>
@@ -46,17 +46,18 @@ const TopDoctors = () => {
               className="group relative"
             >
               <div className="p-6 rounded-[2.5rem] bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 shadow-xl shadow-slate-200/30 dark:shadow-none hover:shadow-2xl transition-all overflow-hidden">
-                {/* Doctor Avatar Placeholder */}
-                <div className="w-full aspect-square bg-slate-100 dark:bg-slate-700 rounded-3xl mb-6 flex items-center justify-center relative overflow-hidden">
-                  <User className="w-20 h-20 text-slate-300 dark:text-slate-600" />
-                  <div className="absolute top-4 right-4 px-3 py-1 bg-white/90 dark:bg-slate-900/90 backdrop-blur rounded-full flex items-center gap-1.5 shadow-lg">
-                    <Star className="w-3 h-3 text-orange-400 fill-orange-400" />
-                    <span className="text-xs font-black dark:text-white">{doc.rating}</span>
+                {/* Doctor Avatar Image */}
+                <div className="w-full aspect-square bg-slate-100 dark:bg-slate-700 rounded-3xl mb-6 relative overflow-hidden shadow-md">
+                  <img src={doc.image} alt={doc.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <div className="absolute top-4 right-4 px-3 py-1 bg-slate-900/80 backdrop-blur rounded-full flex items-center gap-1.5 shadow-lg border border-white/10">
+                    <Star className="w-3 h-3 text-amber-400 fill-amber-400" />
+                    <span className="text-xs font-black text-white">{doc.rating}</span>
                   </div>
                 </div>
 
-                <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-1 group-hover:text-primary-500 transition-colors">{doc.name}</h3>
-                <p className="text-primary-500 font-bold text-sm mb-4">{doc.specialty}</p>
+                <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-0.5 group-hover:text-primary-500 transition-colors">{doc.name}</h3>
+                <p className="text-primary-500 font-bold text-xs mb-1">{doc.specialty}</p>
+                <p className="text-slate-400 text-xs mb-4">{doc.hospital}</p>
 
                 <div className="flex items-center justify-between text-xs font-bold text-slate-500 dark:text-slate-400 mb-6">
                   <span className="flex items-center gap-1"><Calendar className="w-3 h-3" /> {doc.exp}</span>

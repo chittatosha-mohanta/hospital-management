@@ -75,11 +75,18 @@ const Hero = () => {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1 }}
-            className="relative z-10 w-full max-w-md aspect-square bg-gradient-to-br from-primary-500 to-primary-700 rounded-[3rem] shadow-2xl overflow-hidden group"
+            className="relative z-10 w-full max-w-md aspect-square bg-gradient-to-br from-primary-500 to-primary-700 rounded-[3rem] shadow-2xl overflow-hidden group border-4 border-white/20 dark:border-slate-800"
           >
-            {/* I will use a placeholder effect here, in a real app this would be a doctor image */}
-            <div className="absolute inset-0 bg-white/10 backdrop-blur-[2px] flex items-center justify-center">
-              <Stethoscope className="w-32 h-32 text-white/20 group-hover:scale-110 transition-transform duration-700" />
+            <img 
+              src="/images/hero_doctor.jpg" 
+              alt="Healthcare Specialist Doctor" 
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent pointer-events-none"></div>
+            
+            <div className="absolute bottom-6 left-6 right-6 p-4 glass rounded-2xl border border-white/20">
+              <p className="text-white font-black text-sm">Dr. Arjun Sharma, MD</p>
+              <p className="text-primary-300 text-xs font-bold">Chief of Clinical Medicine &bull; Network Lead</p>
             </div>
             
             {/* Floating Badges */}
